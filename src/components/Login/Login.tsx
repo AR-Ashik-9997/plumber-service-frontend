@@ -5,11 +5,22 @@ import axios from "axios";
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { Button, Input } from "@nextui-org/react";
+import { EyeSlashFilledIcon } from "../InputHelper/EyeSlashFilledIcon";
+import { EyeFilledIcon } from "../InputHelper/EyeFilledIcon";
+import { ILogin } from "@/types/globalTypes";
+
 const LoginForm = () => {
-  const { register, handleSubmit, formState:{errors} } = useForm();
-  const onSubmit: SubmitHandler<FormData> = async (data) => {
-    console.log(data);
-  };
+  const [isVisible, setIsVisible] = useState(false);
+
+  const toggleVisibility = () => setIsVisible(!isVisible);
+  const {
+    register,
+    setValue,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<ILogin>();
+  const onSubmit: SubmitHandler<ILogin> = (data) => console.log(data);
 
   return (
     <section>
@@ -19,22 +30,59 @@ const LoginForm = () => {
         </div>
         <div className="min-h-screen bg-gradient-to-r from-[#00bcd4] to-indigo-500 flex flex-col justify-center sm:px-6 lg:px-8 p-4">
           <div className="sm:mx-auto sm:w-full sm:max-w-md">
-            <h2 className="mt-6 text-center text-3xl font-semibold text-gray-900">
+            <h2 className="my-4 text-center text-3xl font-semibold text-gray-900">
               Login
             </h2>
           </div>
-          <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md rounded-xl shadow-lg bg-white">
+          <div className="sm:mx-auto sm:w-full sm:max-w-md rounded-xl shadow-lg bg-white">
             <div className="py-8 px-4 sm:rounded-lg sm:px-10">
-              <form action="">
-                
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <div className="w-full flex flex-col gap-4">
+                  <Input
+                    type="email"
+                    label="Email"
+                    {...register("email", { required: true })}
+                  />
+                  {errors.email && <span>This field is required</span>}
+                  <Input
+                    label="Password"
+                    variant="bordered"
+                    endContent={
+                      <button
+                        className="focus:outline-none"
+                        type="button"
+                        onClick={toggleVisibility}
+                      >
+                        {isVisible ? (
+                          <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                        ) : (
+                          <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                        )}
+                      </button>
+                    }
+                    type={isVisible ? "text" : "password"}
+                  />
+                </div>
+                <div className="flex justify-center items-center mt-4">
+                  <Button
+                    className="w-1/2 active:scale-95 duration-200 text-lg"
+                    color="primary"
+                    type="submit"
+                  >
+                    Login
+                  </Button>
+                </div>
               </form>
               <div className="flex flex-col items-center justify-center mt-6">
                 <hr className="w-3/4 border-1 border-black" />
                 <div className="mt-4">
                   <Link href={"/signup"}>
-                    <h2 className="w-full flex justify-center shadow-sm text-xl font-medium text-teal-700">
-                      Create Register
-                    </h2>
+                    <Button
+                      className="active:scale-95 duration-200 text-lg"
+                      color="primary"
+                    >
+                      Registration
+                    </Button>
                   </Link>
                 </div>
               </div>

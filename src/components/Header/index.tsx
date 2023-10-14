@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import DarkModeSwitcher from "./DarkModeSwitcher";
 import DropdownUser from "./DropdownUser";
-import logo_icon from "../../images/logo/logo-icon.svg";
+import logo_icon from "../images/logo/logo-icon.svg";
 
 const Header = (props: {
   sidebarOpen: string | boolean | undefined;

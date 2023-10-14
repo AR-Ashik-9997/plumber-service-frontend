@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import users from "../../images/user/user-01.png";
+import users from "../images/user/user-01.png";
 const DropdownUser = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
@@ -50,12 +50,7 @@ const DropdownUser = () => {
         </span>
 
         <span className="h-12 w-12 rounded-full">
-          <Image
-            width={112}
-            height={112}
-            src={users}
-            alt="User"
-          />
+          <Image width={112} height={112} src={users} alt="User" />
         </span>
 
         <svg

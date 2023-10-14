@@ -3,7 +3,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import SidebarLinkGroup from "./SidebarLinkGroup";
 import Image from "next/image";
-import logo from "../../images/logo/logo.svg";
+import logo from "../images/logo/logo.svg";
 import { USER_ROLE } from "../constant/role";
 import RoleBasedList from "../constant/sidebarItems";
 interface SidebarProps {

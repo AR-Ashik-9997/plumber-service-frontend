@@ -1,4 +1,4 @@
-import useColorMode from "@/app/hooks/useColorMode";
+import useColorMode from "@/components/hooks/useColorMode";
 
 
 

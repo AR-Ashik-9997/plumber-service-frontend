@@ -1,12 +1,10 @@
 import Image from "next/image";
-
 import { Metadata } from "next";
-import Breadcrumb from "@/app/components/Breadcrumbs/Breadcrumb";
-
+import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 export const metadata: Metadata = {
   title: "Settings Page | Next.js E-commerce Dashboard Template",
   description: "This is Settings page for TailAdmin Next.js",
-  // other metadata
+
 };
 
 const Profile = () => {

@@ -7,37 +7,46 @@ import Image from "next/image";
 import { Button, Input } from "@nextui-org/react";
 import { EyeSlashFilledIcon } from "../InputHelper/EyeSlashFilledIcon";
 import { EyeFilledIcon } from "../InputHelper/EyeFilledIcon";
-import { ILogin } from "@/types/globalTypes";
-import { useUserLoginMutation } from "@/redux/api/authApi";
-
-import Cookies from "js-cookie";
+import { FormData } from "@/types/globalTypes";
 import { useRouter } from "next/navigation";
-
-const LoginForm = () => {
-  const [userLogin] = useUserLoginMutation();
+import axios from "axios";
+const RegistrationPage = () => {
   const router = useRouter();
-  const [isVisible, setIsVisible] = useState(false);
+  const [Error, setError] = useState<string>();
+  const [isVisible, setIsVisible] = useState<Boolean>(false);
   const toggleVisibility = () => setIsVisible(!isVisible);
   const {
     register,
     handleSubmit,
+    getValues,
     reset,
     formState: { errors },
-  } = useForm<ILogin>();
-  const onSubmit: SubmitHandler<ILogin> = async (data: any) => {
-    try {
-      const res = await userLogin(data).unwrap();
-      if (res?.token) {
-        Cookies.set("auth", res?.token);
-        reset();
-        router.push("/profile");
-        res?.success("User logged in successfully!");
-      }
-    } catch (err: any) {
-      console.error(err);
-    }
+  } = useForm<FormData>();
+  const onSubmit: SubmitHandler<FormData> = async (data: FormData) => {
+    const option = {
+      name: data.username,
+      email: data.email,
+      password: data.password,
+    };
+    await axios
+      .post(`${process.env.DB_HOST}/auth/signup`, {
+        name: data.username,
+        email: data.email,
+        password: data.password,
+      })
+      .then((response) => {
+        if (response) {
+          reset();
+          setError("");
+          router.push("/login");
+        }
+      })
+      .catch((error) => {
+        if (error) {
+          setError(error?.response?.data?.message);
+        }
+      });
   };
-
   return (
     <section>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
@@ -47,7 +56,7 @@ const LoginForm = () => {
         <div className="min-h-screen bg-gradient-to-r from-[#00bcd4] to-indigo-500 flex flex-col justify-center sm:px-6 lg:px-8 p-4">
           <div className="sm:mx-auto sm:w-full sm:max-w-md">
             <h2 className="my-4 text-center text-3xl font-semibold text-gray-900">
-              Login
+              Registration
             </h2>
           </div>
           <div className="sm:mx-auto sm:w-full sm:max-w-md rounded-xl shadow-lg bg-white">
@@ -55,15 +64,40 @@ const LoginForm = () => {
               <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="w-full flex flex-col gap-4">
                   <Input
+                    type="text"
+                    label="username"
+                    {...register("username", {
+                      required: "username field is required",
+                    })}
+                  />
+                  {errors.username && (
+                    <p className="text-[red] text-sm mt-1">
+                      {errors.username.message}
+                    </p>
+                  )}
+                  <Input
                     type="email"
                     label="Email"
-                    {...register("email", { required: true })}
+                    {...register("email", {
+                      required: "Email field is required",
+                    })}
                   />
-                  {errors.email && <span>This field is required</span>}
+                  {errors.email && (
+                    <p className="text-[red] text-sm mt-1">
+                      {errors.email.message}
+                    </p>
+                  )}
+                  {Error !== "" && (
+                    <p className="text-[red] text-center text-sm mt-1">
+                      {Error}
+                    </p>
+                  )}
                   <Input
                     label="Password"
                     variant="bordered"
-                    {...register("password", { required: true })}
+                    {...register("password", {
+                      required: "password is required",
+                    })}
                     endContent={
                       <button
                         className="focus:outline-none"
@@ -79,7 +113,27 @@ const LoginForm = () => {
                     }
                     type={isVisible ? "text" : "password"}
                   />
-                  {errors.password && <p>This field is required.</p>}
+                  {errors.password && (
+                    <p className="text-[red] text-sm mt-1">
+                      {errors.password.message}
+                    </p>
+                  )}
+                  <Input
+                    label="Confirm Password"
+                    variant="bordered"
+                    type="password"
+                    {...register("confirm_password", {
+                      required: "confirm Password is required",
+                      validate: (value) =>
+                        value === getValues("password") ||
+                        "Passwords do not match",
+                    })}
+                  />
+                  {errors.confirm_password && (
+                    <p className="text-[red] text-sm mt-1">
+                      {errors.confirm_password.message}
+                    </p>
+                  )}
                 </div>
                 <div className="flex justify-center items-center mt-4">
                   <Button
@@ -87,19 +141,19 @@ const LoginForm = () => {
                     color="primary"
                     type="submit"
                   >
-                    Login
+                    Register
                   </Button>
                 </div>
               </form>
               <div className="flex flex-col items-center justify-center mt-6">
                 <hr className="w-3/4 border-1 border-black" />
                 <div className="mt-4">
-                  <Link href={"/registration"}>
+                  <Link href={"/login"}>
                     <Button
                       className="active:scale-95 duration-200 text-lg"
                       color="primary"
                     >
-                      Registration
+                      Login
                     </Button>
                   </Link>
                 </div>
@@ -112,4 +166,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default RegistrationPage;

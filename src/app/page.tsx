@@ -1,4 +1,5 @@
 "use client";
+import AboutService from "@/components/AboutService/AboutService";
 import MainNavbar from "@/components/Navbar/Navbar";
 import Services from "@/components/Services/Services";
 import Testimonial from "@/components/Testimonial/Testimonial";
@@ -10,8 +11,9 @@ export default function Home() {
       <MainNavbar />
       <main className="min-h-screen top-4">
         <Topbanner />
-        <Services/>
-        <Testimonial/>
+        <Services />
+        <AboutService />
+        <Testimonial />
       </main>
     </section>
   );

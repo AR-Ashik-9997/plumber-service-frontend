@@ -4,8 +4,8 @@ import { usePathname } from "next/navigation";
 import SidebarLinkGroup from "./SidebarLinkGroup";
 import Image from "next/image";
 import logo from "../images/logo/logo.svg";
-import { USER_ROLE } from "../constant/role";
 import RoleBasedList from "../constant/sidebarItems";
+import { getUserInfo } from "@/services/auth_service";
 interface SidebarProps {
   sidebarOpen: boolean;
   setSidebarOpen: (arg: boolean) => void;
@@ -13,7 +13,8 @@ interface SidebarProps {
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
   const pathname = usePathname();
-  const role = USER_ROLE.ADMIN;
+  const { role } = getUserInfo() as any;
+
   const trigger = useRef<any>(null);
   const sidebar = useRef<any>(null);
   let storedSidebarExpanded = "true";

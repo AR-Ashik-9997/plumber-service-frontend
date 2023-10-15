@@ -1,21 +1,27 @@
-"use client"
+"use client";
 import Header from "@/components/Header";
 import Sidebar from "@/components/Sidebar";
 import Loader from "@/components/common/Loader";
+import { isLoggedIn } from "@/services/auth_service";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-
-  const [loading, setLoading] = useState<boolean>(true);
-
+  const [loading, setLoading] = useState<boolean>(false);
+  const userLoggedIn = isLoggedIn();
+  const router = useRouter();
   useEffect(() => {
-    setTimeout(() => setLoading(false), 1000);
-  }, []);
+    if (!userLoggedIn) {
+      router.push("/login");
+    }
+    setLoading(true);
+  }, [router, loading]);
+
   return (
     <div>
       <div className="dark:bg-boxdark-2 dark:text-bodydark">
-        {loading ? (
+        {!loading ? (
           <Loader />
         ) : (
           <div className="flex h-screen overflow-hidden">

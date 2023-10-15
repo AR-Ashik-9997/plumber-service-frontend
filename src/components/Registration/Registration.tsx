@@ -83,14 +83,14 @@ const RegistrationPage = () => {
                     })}
                   />
                   {errors.email && (
-                    <p className="text-[red] text-sm mt-1">
+                    <span className="text-[red] text-sm">
                       {errors.email.message}
-                    </p>
+                    </span>
                   )}
                   {Error !== "" && (
-                    <p className="text-[red] text-center text-sm mt-1">
+                    <span className="text-[red] text-center text-sm">
                       {Error}
-                    </p>
+                    </span>
                   )}
                   <Input
                     label="Password"

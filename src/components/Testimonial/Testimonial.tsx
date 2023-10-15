@@ -6,36 +6,9 @@ import { AiFillStar } from "react-icons/ai";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { Autoplay } from "swiper/modules";
+import title_shape from "../../assets/title_shape_1.svg";
 
 const reviewData = [
-  {
-    image: test,
-    name: "Alexander Test",
-    designation: "designer",
-    description:
-      "Enthusiastically matrix visionary e-commerce after enterprise-wide collaboration and idea-sharing. Objectively administrate bleeding-edge best practices through interactive niche markets.Distinctively productize",
-  },
-  {
-    image: test,
-    name: "Alexander Test",
-    designation: "designer",
-    description:
-      "Enthusiastically matrix visionary e-commerce after enterprise-wide collaboration and idea-sharing. Objectively administrate bleeding-edge best practices through interactive niche markets.Distinctively productize",
-  },
-  {
-    image: test,
-    name: "Alexander Test",
-    designation: "designer",
-    description:
-      "Enthusiastically matrix visionary e-commerce after enterprise-wide collaboration and idea-sharing. Objectively administrate bleeding-edge best practices through interactive niche markets.Distinctively productize",
-  },
-  {
-    image: test,
-    name: "Alexander Test",
-    designation: "designer",
-    description:
-      "Enthusiastically matrix visionary e-commerce after enterprise-wide collaboration and idea-sharing. Objectively administrate bleeding-edge best practices through interactive niche markets.Distinctively productize",
-  },
   {
     image: test,
     name: "Alexander Test",
@@ -75,16 +48,20 @@ const reviewData = [
 const Testimonial = () => {
   return (
     <section className='py-12 px-4 sm:px-8 md:px-12 lg:px-16"'>
-      <div className="text-4xl text-black-2 font-bold text-center py-8">
-        <h1>What Our Customer Says?</h1>
+      <div className="text-black-2 font-bold text-center py-8">
+        <div className="mb-4 flex justify-center items-center gap-4">
+          <Image src={title_shape} alt="" width={40} height={40} />
+          <p className="text-[#E83A15] text-xl">Testimonials</p>
+        </div>
+        <h1 className="text-4xl">What Our Customer Says?</h1>
       </div>
+
       <div className="pt-8 w-full xl:w-3/5 mx-auto">
         <Swiper
-          spaceBetween={30}          
+          spaceBetween={30}
           loop={true}
           autoplay={{
             delay: 2500,
-         
           }}
           breakpoints={{
             0: {

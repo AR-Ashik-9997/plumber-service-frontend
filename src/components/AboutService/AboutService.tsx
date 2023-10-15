@@ -3,12 +3,17 @@ import Image from "next/image";
 import feature1 from "../../assets/choose_feature_1.svg";
 import feature2 from "../../assets/choose_feature_2.svg";
 import why from "../../assets/why_1_1.jpg";
+import title_shape from "../../assets/title_shape_1.svg";
 
 const AboutService = () => {
   return (
     <section className="py-12 px-4 sm:px-8 md:px-12 lg:px-16">
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 mx-auto w-4/5">
-        <div>
+        <div className="text-black-2 font-bold py-8">
+          <div className="mb-4 flex items-center gap-4">
+            <Image src={title_shape} alt="" width={40} height={40} />
+            <p className="text-[#E83A15] text-xl">Why Choosing Our Services</p>
+          </div>
           <h1 className="text-4xl font-bold text-black-2 mb-4">
             The Perfect Solutions For All Plumbing Services
           </h1>

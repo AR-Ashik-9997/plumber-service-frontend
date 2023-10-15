@@ -6,6 +6,8 @@ import "swiper/css";
 import test from "../../assets/test.png";
 import { useRouter } from "next/navigation";
 import { Autoplay } from "swiper/modules";
+import title_shape from "../../assets/title_shape_1.svg";
+
 const cardData = [
   {
     image: test,
@@ -97,9 +99,12 @@ const Services = () => {
   return (
     <section className="py-12 px-4 sm:px-8 md:px-12 lg:px-16">
       <div className="flex flex-wrap justify-between items-center w-3/4 mx-auto mb-12">
-        <div className="text-4xl text-black-2 font-bold">
-          <Image src="" alt="good" />
-          <h1>See Our Plumbing Services</h1>
+        <div className="text-black-2 font-bold text-center py-8">
+          <div className="mb-4 flex items-center gap-4">
+            <Image src={title_shape} alt="" width={40} height={40} />
+            <p className="text-[#E83A15] text-xl">Our Services</p>
+          </div>
+          <h1 className="text-4xl">See Our Plumbing Services</h1>
         </div>
         <div>
           <Button
@@ -135,7 +140,6 @@ const Services = () => {
               slidesPerView: 3,
               spaceBetween: 30,
             },
-            
           }}
           modules={[Autoplay]}
           className="mySwiper"

@@ -4,6 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import test from "../../assets/test.png";
 import { useRouter } from "next/navigation";
+import title_shape from "../../assets/title_shape_1.svg";
 import Image from "next/image";
 const TeamData = [
   {
@@ -31,9 +32,13 @@ const TeamMember = () => {
   const router = useRouter();
   return (
     <section className={`${style.team_banner}`}>
-      <div className="w-full p-4 bg-black bg-opacity-80 h-full">
-        <div className="text-4xl text-white font-bold text-center py-8 flex items-center justify-center">
-          <h1>Meet The Expert Team Member</h1>
+      <div className="w-full p-4 bg-black bg-opacity-90 h-full">
+        <div className="text-white font-bold text-center py-8">
+          <div className="mb-4 flex justify-center items-center gap-4">
+            <Image src={title_shape} alt="" width={40} height={40} />
+            <p className="text-[#E83A15] text-xl">Expert Team</p>
+          </div>
+          <h1 className="text-4xl">Meet The Expert Team Member</h1>
         </div>
         <div className="pt-8 w-full xl:w-1/2 mx-auto">
           <Swiper

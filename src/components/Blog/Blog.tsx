@@ -6,6 +6,7 @@ import "swiper/css";
 import test from "../../assets/test.png";
 import { useRouter } from "next/navigation";
 import { Autoplay } from "swiper/modules";
+import title_shape from "../../assets/title_shape_1.svg";
 const blogData = [
   {
     image: test,
@@ -33,9 +34,13 @@ const Blog = () => {
   const router = useRouter();
   return (
     <section className="py-12 px-4 sm:px-8 md:px-12 lg:px-16">
-      <div className="text-4xl text-black-2 font-bold text-center py-8">
-        <h1>Our Latest New And Articles</h1>
-      </div>
+      <div className="text-black-2 font-bold text-center py-8">
+          <div className="mb-4 flex justify-center items-center gap-4">
+            <Image src={title_shape} alt="" width={40} height={40} />
+            <p className="text-[#E83A15] text-xl">Blogs</p>
+          </div>
+          <h1 className="text-4xl">Our Latest New And Articles</h1>
+        </div>
       <div className="pt-8 w-full xl:w-3/4 mx-auto">
         <Swiper
           spaceBetween={30}

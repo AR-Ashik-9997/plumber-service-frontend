@@ -14,6 +14,7 @@ import { useRouter } from "next/navigation";
 
 const LoginForm = () => {
   const [userLogin] = useUserLoginMutation();
+  const [loading, setLoading] = useState<boolean>(false);
   const router = useRouter();
   const [isVisible, setIsVisible] = useState(false);
   const toggleVisibility = () => setIsVisible(!isVisible);
@@ -24,15 +25,17 @@ const LoginForm = () => {
     formState: { errors },
   } = useForm<ILogin>();
   const onSubmit: SubmitHandler<ILogin> = async (data: any) => {
+    setLoading(true);
     try {
       const res = await userLogin(data).unwrap();
       if (res?.token) {
         Cookies.set("auth", res?.token);
         reset();
-        router.push("/profile");
-        res?.success("User logged in successfully!");
+        setLoading(false);
+        router.push("/");
       }
     } catch (err: any) {
+      setLoading(false);
       console.error(err);
     }
   };
@@ -58,7 +61,7 @@ const LoginForm = () => {
                     label="Email"
                     {...register("email", { required: true })}
                   />
-                  {errors.email && <span>This field is required</span>}
+                  {errors.email && <p className="text-[red] text-sm mt-1">This Field is required</p>}
                   <Input
                     label="Password"
                     variant="bordered"
@@ -78,15 +81,25 @@ const LoginForm = () => {
                     }
                     type={isVisible ? "text" : "password"}
                   />
-                  {errors.password && <p>This field is required.</p>}
+                  {errors.password && <p className="text-[red] text-sm mt-1">This Field is required</p>}
                 </div>
                 <div className="flex justify-center items-center mt-4">
-                  <Button
-                    className="w-1/2 active:scale-95 duration-200 text-lg hover:bg-[#E83A15] hover:text-white text-black-2"
-                    type="submit"
-                  >
-                    Login
-                  </Button>
+                  {!loading ? (
+                    <Button
+                      className="w-1/2 active:scale-95 duration-200 text-lg hover:bg-[#E83A15] hover:text-white text-black-2"
+                      type="submit"
+                    >
+                      Login
+                    </Button>
+                  ) : (
+                    <Button
+                      isLoading
+                      className="w-1/2  text-lg bg-[#E83A15] text-white opacity-90"
+                      type="submit"
+                    >
+                      Login
+                    </Button>
+                  )}
                 </div>
               </form>
               <div className="flex flex-col items-center justify-center mt-6">

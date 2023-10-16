@@ -8,21 +8,33 @@ import Services from "@/components/Services/Services";
 import TeamMember from "@/components/TeamMember/TeamMember";
 import Testimonial from "@/components/Testimonial/Testimonial";
 import Topbanner from "@/components/Topbanner/Topbanner";
+import Loader from "@/components/common/Loader";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+  const [loading, setLoading] = useState<boolean>(true);
+  useEffect(() => {
+    setTimeout(() => setLoading(false), 1000);
+  }, []);
   return (
     <section>
-      <MainNavbar />
-      <main className="min-h-screen top-4">
-        <Topbanner />
-        <AboutCompany />
-        <Services />
-        <AboutService />
-        <TeamMember />
-        <Testimonial />
-        <Blog />
-        <Footer />
-      </main>
+      {loading ? (
+        <Loader />
+      ) : (
+        <>
+          <MainNavbar />
+          <main className="min-h-screen top-4">
+            <Topbanner />
+            <AboutCompany />
+            <Services />
+            <AboutService />
+            <TeamMember />
+            <Testimonial />
+            <Blog />
+            <Footer />
+          </main>
+        </>
+      )}
     </section>
   );
 }

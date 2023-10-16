@@ -1,7 +1,8 @@
 import Cookies from "js-cookie";
 import jwtDecode from "jwt-decode";
+export const authKey = "auth";
 export const getUserInfo = () => {
-  const authToken = Cookies.get("auth");
+  const authToken = Cookies.get(authKey);
   if (authToken) {
     const decodedData = jwtDecode(authToken);
     return decodedData;
@@ -11,10 +12,10 @@ export const getUserInfo = () => {
 };
 
 export const isLoggedIn = () => {
-  const authToken = Cookies.get("auth");
+  const authToken = Cookies.get(authKey);
   return !!authToken;
 };
 
 export const removeUserInfo = (key: string) => {
-  return Cookies.remove("auth");
+  return Cookies.remove(key);
 };

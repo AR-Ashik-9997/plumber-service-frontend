@@ -23,7 +23,7 @@ const AboutService = () => {
             end-to-end portals before clicks-and-mortar portals. Distinctively
             integrate.
           </p>
-          <section className="flex gap-4 py-12">
+          <section className="flex gap-4 py-12 bg-[#f7f7f7]">
             <div className="max-w-sm rounded overflow-hidden shadow-xl">
               <Image
                 src={feature1}
@@ -60,14 +60,18 @@ const AboutService = () => {
         </div>
         <div>
           <div className="relative">
-            <Image src={why} className="mx-auto p-4" alt="" />
-            <div className="shadow-2xl w-40 absolute top-2 py-12 block bg-white">
-              <h1 className="text-4xl font-bold text-center text-[#E83A15] ">
-                24
-              </h1>
-              <h1 className="text-sm font-bold text-center">
-                Hours Emergency Services
-              </h1>
+            <div className="block">
+              <Image src={why} className="mx-auto p-4" alt="" />
+            </div>
+            <div className="absolute -bottom-10 right-10">
+              <div className="shadow-2xl w-40 py-12  bg-white">
+                <h1 className="text-4xl font-bold text-center text-[#E83A15] ">
+                  24
+                </h1>
+                <h1 className="text-sm font-bold text-center">
+                  Hours Emergency Services
+                </h1>
+              </div>
             </div>
           </div>
         </div>

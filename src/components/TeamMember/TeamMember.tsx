@@ -42,8 +42,7 @@ const TeamMember = () => {
         </div>
         <div className="pt-8 w-full xl:w-1/2 mx-auto">
           <Swiper
-            spaceBetween={30}
-            centeredSlides={true}
+            spaceBetween={30}            
             breakpoints={{
               0: {
                 slidesPerView: 1,

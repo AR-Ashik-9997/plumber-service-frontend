@@ -7,48 +7,46 @@ import test from "../../assets/test.png";
 import { useRouter } from "next/navigation";
 import { Autoplay } from "swiper/modules";
 import title_shape from "../../assets/title_shape_1.svg";
+
 const blogData = [
   {
     image: test,
-    title: "We’ll make your old kitchen Look brand new.",    
+    title: "We’ll make your old kitchen Look brand new.",
     link: "#",
   },
   {
     image: test,
-    title: "We’ll make your old kitchen Look brand new.",    
+    title: "We’ll make your old kitchen Look brand new.",
     link: "#",
   },
   {
     image: test,
-    title: "We’ll make your old kitchen Look brand new.",    
+    title: "We’ll make your old kitchen Look brand new.",
     link: "#",
-  },  
+  },
   {
     image: test,
-    title: "We’ll make your old kitchen Look brand new.",    
+    title: "We’ll make your old kitchen Look brand new.",
     link: "#",
-  },  
-  
+  },
 ];
 const Blog = () => {
   const router = useRouter();
   return (
-    <section className="py-12 px-4 sm:px-8 md:px-12 lg:px-16">
+    <section className={"py-12 px-4 sm:px-8 md:px-12 lg:px-16"}>
       <div className="text-black-2 font-bold text-center py-8">
-          <div className="mb-4 flex justify-center items-center gap-4">
-            <Image src={title_shape} alt="" width={40} height={40} />
-            <p className="text-[#E83A15] text-xl">Blogs</p>
-          </div>
-          <h1 className="text-4xl">Our Latest New And Articles</h1>
+        <div className="mb-4 flex justify-center items-center gap-4">
+          <Image src={title_shape} alt="" width={40} height={40} />
+          <p className="text-[#E83A15] text-xl">Blogs</p>
         </div>
+        <h1 className="text-4xl">Our Latest New And Articles</h1>
+      </div>
       <div className="pt-8 w-full xl:w-3/4 mx-auto">
         <Swiper
           spaceBetween={30}
-          centeredSlides={true}
           loop={true}
           autoplay={{
             delay: 6000,
-            disableOnInteraction: false,
           }}
           breakpoints={{
             0: {
@@ -65,7 +63,6 @@ const Blog = () => {
               slidesPerView: 3,
               spaceBetween: 30,
             },
-            
           }}
           modules={[Autoplay]}
           className="mySwiper"
@@ -79,7 +76,9 @@ const Blog = () => {
                   className="w-full object-cover  mx-auto p-4"
                 />
                 <div className="px-6 py-4">
-                  <div className="font-bold text-2xl text-black-2 mb-2">{item?.title}</div>                  
+                  <div className="font-bold text-2xl text-black-2 mb-2">
+                    {item?.title}
+                  </div>
                 </div>
                 <div className="px-6 mb-8 pt-2">
                   <Button

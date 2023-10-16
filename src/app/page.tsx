@@ -1,4 +1,5 @@
 "use client";
+import AboutCompany from "@/components/AboutCompany/AboutCompany";
 import AboutService from "@/components/AboutService/AboutService";
 import Blog from "@/components/Blog/Blog";
 import MainNavbar from "@/components/Navbar/Navbar";
@@ -13,6 +14,7 @@ export default function Home() {
       <MainNavbar />
       <main className="min-h-screen top-4">
         <Topbanner />
+        <AboutCompany />
         <Services />
         <AboutService />
         <TeamMember />

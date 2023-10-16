@@ -97,7 +97,7 @@ const cardData = [
 const Services = () => {
   const router = useRouter();
   return (
-    <section className="py-12 px-4 sm:px-8 md:px-12 lg:px-16">
+    <section className="py-12 px-4 sm:px-8 md:px-12 lg:px-16 bg-[#f7f7f7]">
       <div className="flex flex-wrap justify-between items-center w-3/4 mx-auto mb-12">
         <div className="text-black-2 font-bold text-center py-8">
           <div className="mb-4 flex items-center gap-4">
@@ -118,12 +118,10 @@ const Services = () => {
       </div>
       <div className="pt-8 w-full xl:w-3/4 mx-auto">
         <Swiper
-          spaceBetween={30}
-          centeredSlides={true}
+          spaceBetween={30}          
           loop={true}
           autoplay={{
-            delay: 2500,
-            disableOnInteraction: false,
+            delay: 2500,            
           }}
           breakpoints={{
             0: {
@@ -146,7 +144,7 @@ const Services = () => {
         >
           {cardData.map((item, i: number) => (
             <SwiperSlide key={i}>
-              <div className="max-w-sm rounded overflow-hidden shadow-xl">
+              <div className="max-w-sm rounded overflow-hidden bg-white shadow-xl">
                 <Image
                   src={item?.image}
                   alt="Card Image"

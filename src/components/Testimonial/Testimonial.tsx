@@ -7,6 +7,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { Autoplay } from "swiper/modules";
 import title_shape from "../../assets/title_shape_1.svg";
+import style from "./Testimonial.module.css";
 
 const reviewData = [
   {
@@ -47,7 +48,9 @@ const reviewData = [
 ];
 const Testimonial = () => {
   return (
-    <section className='py-12 px-4 sm:px-8 md:px-12 lg:px-16"'>
+    <section
+      className={` ${style.testimonial_banner} py-12 px-4 sm:px-8 md:px-12 lg:px-16`}
+    >
       <div className="text-black-2 font-bold text-center py-8">
         <div className="mb-4 flex justify-center items-center gap-4">
           <Image src={title_shape} alt="" width={40} height={40} />

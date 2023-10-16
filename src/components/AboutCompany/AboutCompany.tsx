@@ -1,7 +1,5 @@
 "use client";
 import Image from "next/image";
-import feature1 from "../../assets/choose_feature_1.svg";
-import feature2 from "../../assets/choose_feature_2.svg";
 import about1 from "../../assets/about_1_1.jpg";
 import about2 from "../../assets/about_1_2.jpg";
 import title_shape from "../../assets/title_shape_1.svg";
@@ -17,32 +15,32 @@ const AboutCompany = () => {
             <div className="block">
               <Image src={about1} className="mx-auto p-4" alt="" />
             </div>
-            <div className="absolute bottom-0 right-0 z-1 bg-[#E0E0E0]">
+            <div className="absolute bottom-0 xl:bottom-20 2xl:bottom-0 right-0 z-1 bg-[#E0E0E0] w-1/2">
               <Image src={about2} className="mx-auto p-4" alt="" />
             </div>
           </div>
         </div>
-        <div className="text-black-2 py-8 p-4">
+        <div className="text-black-2 py-8  md:p-4">
           <div className="mb-4 flex items-center gap-4">
             <Image src={title_shape} alt="" width={40} height={40} />
-            <p className="text-[#E83A15] font-bold text-xl">
+            <p className="text-[#E83A15] font-bold text-lg md:text-xl">
               About Our Company
             </p>
           </div>
-          <h1 className="text-4xl font-bold text-black-2 mb-4">
+          <h1 className="text-lg md:text-4xl font-bold text-black-2 mb-4">
             Our Company Provide The Best Plumbing Service
           </h1>
-          <p className="text-black-2 ">
+          <p className="text-black-2 text-justify">
             Globally disintermediate installed base web services without
             frictionless platforms. Distinctively pursue low-risk high-yield
             e-commerce before multimedia based core mindshare. Interactively
             synthesize. Seamlessly impact parallel core. Proactively optimize
             mission-critical e-business after integrated niche markets.
           </p>
-          <section className="py-12">
+          <section className="py-12 grid grid-cols-2 md:grid-cols-3 gap-4">
             <Button
               size="lg"
-              className="text-xl"
+              className="text-sm md:text-xl"
               variant="bordered"
               radius="none"
               startContent={
@@ -55,7 +53,7 @@ const AboutCompany = () => {
             </Button>
             <Button
               size="lg"
-              className="text-xl"
+              className="text-sm md:text-xl"
               variant="bordered"
               radius="none"
               startContent={
@@ -68,7 +66,7 @@ const AboutCompany = () => {
             </Button>
             <Button
               size="lg"
-              className="text-xl"
+              className="text-sm md:text-xl"
               variant="bordered"
               radius="none"
               startContent={
@@ -80,7 +78,7 @@ const AboutCompany = () => {
               Installing
             </Button>
           </section>
-          <div>
+          <div className="flex justify-center md:justify-start">
             <Button
               size="lg"
               radius="none"

@@ -98,15 +98,20 @@ const Services = () => {
   const router = useRouter();
   return (
     <section className="py-12 px-4 sm:px-8 md:px-12 lg:px-16 bg-[#f7f7f7]">
-      <div className="flex flex-wrap justify-between items-center w-3/4 mx-auto mb-12">
-        <div className="text-black-2 font-bold text-center py-8">
-          <div className="mb-4 flex items-center gap-4">
+      <div
+        className="grid grid-cols-1 xl:grid-cols-2 gap-4 w-full md:w-3/4  xl:items-center
+       mx-auto mb-12 "
+      >
+        <div className="text-black-2 font-bold text-center xl:text-start py-8">
+          <div className="mb-4 flex justify-center 2xl:justify-normal items-center gap-4">
             <Image src={title_shape} alt="" width={40} height={40} />
             <p className="text-[#E83A15] text-xl">Our Services</p>
           </div>
-          <h1 className="text-4xl">See Our Plumbing Services</h1>
+          <h1 className="text-2xl md:text-3xl 2xl:text-4xl">
+            See Our Plumbing Services
+          </h1>
         </div>
-        <div>
+        <div className="flex justify-center  xl:justify-end">
           <Button
             size="lg"
             radius="none"
@@ -118,10 +123,10 @@ const Services = () => {
       </div>
       <div className="pt-8 w-full xl:w-3/4 mx-auto">
         <Swiper
-          spaceBetween={30}          
+          spaceBetween={30}
           loop={true}
           autoplay={{
-            delay: 2500,            
+            delay: 2500,
           }}
           breakpoints={{
             0: {

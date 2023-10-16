@@ -2,6 +2,7 @@
 import AboutCompany from "@/components/AboutCompany/AboutCompany";
 import AboutService from "@/components/AboutService/AboutService";
 import Blog from "@/components/Blog/Blog";
+import Footer from "@/components/Footer/Footer";
 import MainNavbar from "@/components/Navbar/Navbar";
 import Services from "@/components/Services/Services";
 import TeamMember from "@/components/TeamMember/TeamMember";
@@ -20,6 +21,7 @@ export default function Home() {
         <TeamMember />
         <Testimonial />
         <Blog />
+        <Footer />
       </main>
     </section>
   );

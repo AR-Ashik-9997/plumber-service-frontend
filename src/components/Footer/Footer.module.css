@@ -1,0 +1,14 @@
+.Footer_bg1 {
+  background-image: url("../../assets/footer_shape_1.png");
+  background-repeat: no-repeat;
+  height: 30vh;
+  background-position: left;
+  background-size: cover;
+}
+.Footer_bg2 {
+  background-image: url("../../assets/footer_shape_2.png");
+  background-repeat: no-repeat;
+  height: 30vh;
+  background-position: right;
+  background-size: cover;
+}

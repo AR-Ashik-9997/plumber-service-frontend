@@ -7,7 +7,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { Autoplay } from "swiper/modules";
 import title_shape from "../../assets/title_shape_1.svg";
-import style from "./Testimonial.module.css";
 
 const reviewData = [
   {
@@ -48,18 +47,16 @@ const reviewData = [
 ];
 const Testimonial = () => {
   return (
-    <section
-      className={` ${style.testimonial_banner} py-12 px-4 sm:px-8 md:px-12 lg:px-16`}
-    >
-      <div className="text-black-2 font-bold text-center py-8">
+    <section className="py-12 px-4 sm:px-8 md:px-12 lg:px-16">
+      <div className="text-black-2 font-bold text-center">
         <div className="mb-4 flex justify-center items-center gap-4">
           <Image src={title_shape} alt="" width={40} height={40} />
           <p className="text-[#E83A15] text-xl">Testimonials</p>
         </div>
-        <h1 className="text-4xl">What Our Customer Says?</h1>
+        <h1 className="text-2xl md:text-4xl">What Our Customer Says?</h1>
       </div>
 
-      <div className="pt-8 w-full xl:w-3/5 mx-auto">
+      <div className="pt-8 w-full 2xl:w-3/5 mx-auto">
         <Swiper
           spaceBetween={30}
           loop={true}
@@ -91,8 +88,8 @@ const Testimonial = () => {
         >
           {reviewData.map((item, i: number) => (
             <SwiperSlide key={i}>
-              <div className="flex gap-4 flex-col xl:flex-row">
-                <div className="mx-auto bg-white rounded-xl shadow-2xl overflow-hidden flex flex-col md:flex-row lg:flex-col xl:flex-row gap-4">
+              <div className="flex gap-4 flex-col lg:flex-row">
+                <div className="mx-auto bg-white rounded-xl shadow-2xl overflow-hidden flex flex-col md:flex-row lg:flex-row gap-4">
                   <div className="p-4">
                     <Image src={test} alt="" height={400} width={400} />
                     <div className="flex items-center pt-4 justify-center">

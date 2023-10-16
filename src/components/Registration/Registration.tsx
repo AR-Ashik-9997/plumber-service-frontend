@@ -137,8 +137,8 @@ const RegistrationPage = () => {
                 </div>
                 <div className="flex justify-center items-center mt-4">
                   <Button
-                    className="w-1/2 active:scale-95 duration-200 text-lg"
-                    color="primary"
+                    className="w-1/2 active:scale-95 duration-200 text-lg hover:bg-[#E83A15] hover:text-white text-black-2"
+                    
                     type="submit"
                   >
                     Register
@@ -150,8 +150,7 @@ const RegistrationPage = () => {
                 <div className="mt-4">
                   <Link href={"/login"}>
                     <Button
-                      className="active:scale-95 duration-200 text-lg"
-                      color="primary"
+                      className="active:scale-95 duration-200 text-lg  bg-[#1d4777] text-white"
                     >
                       Login
                     </Button>

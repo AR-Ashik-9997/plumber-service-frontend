@@ -82,8 +82,7 @@ const LoginForm = () => {
                 </div>
                 <div className="flex justify-center items-center mt-4">
                   <Button
-                    className="w-1/2 active:scale-95 duration-200 text-lg"
-                    color="primary"
+                    className="w-1/2 active:scale-95 duration-200 text-lg hover:bg-[#E83A15] hover:text-white text-black-2"
                     type="submit"
                   >
                     Login
@@ -94,10 +93,7 @@ const LoginForm = () => {
                 <hr className="w-3/4 border-1 border-black" />
                 <div className="mt-4">
                   <Link href={"/registration"}>
-                    <Button
-                      className="active:scale-95 duration-200 text-lg"
-                      color="primary"
-                    >
+                    <Button className="active:scale-95 duration-200 text-lg  bg-[#1d4777] text-white">
                       Registration
                     </Button>
                   </Link>

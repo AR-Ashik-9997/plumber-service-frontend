@@ -45,44 +45,44 @@ export default function MainNavbar() {
         </NavbarBrand>
       </NavbarContent>
 
-      <NavbarContent className="hidden sm:flex gap-4" justify="center">
+      <NavbarContent className="hidden sm:flex gap-4 text-black-2" justify="center">
         <NavbarItem>
-          <Link color="foreground" href="#">
+          <Link className="text-black-2 font-medium hover:text-[#E83A15]" href="#">
             Service
           </Link>
         </NavbarItem>
-        <NavbarItem isActive>
-          <Link href="#" aria-current="page">
+        <NavbarItem >
+          <Link className="text-black-2 font-medium hover:text-[#E83A15]" href="#">
             Product
           </Link>
         </NavbarItem>
         <NavbarItem>
-          <Link color="foreground" href="#">
+          <Link className="text-black-2 font-medium hover:text-[#E83A15]" href="#">
             Bolg
           </Link>
         </NavbarItem>
         <NavbarItem>
-          <Link color="foreground" href="#">
+          <Link className="text-black-2 font-medium hover:text-[#E83A15]" href="#">
             Dashboard
           </Link>
         </NavbarItem>
         <NavbarItem>
-          <Link color="foreground" href="#">
+          <Link className="text-black-2 font-medium hover:text-[#E83A15]" href="#">
             About Us
           </Link>
         </NavbarItem>
         <NavbarItem>
-          <Link color="foreground" href="#">
+          <Link className="text-black-2 font-medium hover:text-[#E83A15]" href="#">
             Contact Us
           </Link>
         </NavbarItem>
       </NavbarContent>
       <NavbarContent justify="end">
         <NavbarItem className="hidden lg:flex">
-          <Link href="/login">Login</Link>
+          <Link className="text-black font-bold hover:text-[#00045F]" href="/login">Login</Link>
         </NavbarItem>
         <NavbarItem>
-          <Button as={Link} color="primary" href="/registration" variant="flat">
+          <Button as={Link} className="text-xl text-black-2 hover:text-white hover:bg-[#E83A15]" href="/registration" variant="flat">
             Register
           </Button>
         </NavbarItem>

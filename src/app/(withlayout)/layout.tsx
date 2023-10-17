@@ -8,20 +8,20 @@ import React, { useEffect, useState } from "react";
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
   const userLoggedIn = isLoggedIn();
   const router = useRouter();
   useEffect(() => {
     if (!userLoggedIn) {
       router.push("/login");
     }
-    setLoading(true);
+    setTimeout(() => setLoading(false), 1000);
   }, [router, loading]);
 
   return (
     <div>
       <div className="dark:bg-boxdark-2 dark:text-bodydark">
-        {!loading ? (
+        {loading ? (
           <Loader />
         ) : (
           <div className="flex h-screen overflow-hidden">

@@ -2,8 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import SidebarLinkGroup from "./SidebarLinkGroup";
-import Image from "next/image";
-import logo from "../images/logo/logo.svg";
 import RoleBasedList from "../constant/sidebarItems";
 import { getUserInfo } from "@/services/auth_service";
 interface SidebarProps {
@@ -66,8 +64,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
     >
       {/* <!-- SIDEBAR HEADER --> */}
       <div className="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5">
-        <Link href="/">
-          <Image width={176} height={32} src={logo} alt="Logo" />
+        <Link href="/dashboard" className="text-4xl text-white font-bold">
+          Dashboard
         </Link>
 
         <button

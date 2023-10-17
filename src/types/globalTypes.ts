@@ -9,3 +9,12 @@ export type ILogin = {
   email: string;
   password: string;
 };
+
+export type IProfile = {
+  username: string;
+  contactNo: string;
+  address: string;
+  image: string;
+  bio: string;
+};
+

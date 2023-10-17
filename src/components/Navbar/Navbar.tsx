@@ -96,7 +96,7 @@ export default function MainNavbar() {
         <NavbarItem>
           <Link
             className="text-black-2 font-medium hover:text-[#E83A15]"
-            href="#"
+            href="/dashboard"
           >
             Dashboard
           </Link>
@@ -132,19 +132,9 @@ export default function MainNavbar() {
                 src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
               />
             </DropdownTrigger>
-            <DropdownMenu aria-label="Profile Actions" variant="flat">
-              <DropdownItem key="profile" className="h-14 gap-2">
-                <p className="font-semibold">Signed in as</p>
-                <p className="font-semibold">zoey@example.com</p>
-              </DropdownItem>
-              <DropdownItem key="settings">My Settings</DropdownItem>
-              <DropdownItem key="team_settings">Team Settings</DropdownItem>
-              <DropdownItem key="analytics">Analytics</DropdownItem>
-              <DropdownItem key="system">System</DropdownItem>
-              <DropdownItem key="configurations">Configurations</DropdownItem>
-              <DropdownItem key="help_and_feedback">
-                Help & Feedback
-              </DropdownItem>
+            <DropdownMenu aria-label="Profile Actions" variant="flat">             
+              <DropdownItem onClick={()=>router.push('dashboard')} key="settings">Dashboard</DropdownItem>            
+              
               <DropdownItem onClick={handleLogOut} key="logout" color="danger">
                 Log Out
               </DropdownItem>

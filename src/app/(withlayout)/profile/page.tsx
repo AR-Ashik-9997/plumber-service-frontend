@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import ProfilePage from "@/components/Profile/Profile";
+import CombinationProfilePage from "./combinationProfile/CombinationProfilePage";
 
 export const metadata: Metadata = {
   title: "Profile Page",
@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 const Profile = () => {
   return (
     <div>
-      <ProfilePage />
+      <CombinationProfilePage />
     </div>
   );
 };

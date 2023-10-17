@@ -9,7 +9,7 @@ import axios from "axios";
 import { Button } from "@nextui-org/react";
 import Swal from "sweetalert2";
 
-const ProfilePage = () => {
+const CreateProfilePage = () => {
   const {
     register,
     handleSubmit,
@@ -262,4 +262,4 @@ const ProfilePage = () => {
   );
 };
 
-export default ProfilePage;
+export default CreateProfilePage;

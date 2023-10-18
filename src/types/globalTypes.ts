@@ -21,11 +21,28 @@ export type IProfile = {
 export type ICreateUser = {
   name: string;
   email: string;
-  password: string;  
-  profile: {   
+  password: string;
+  profile: {
     contactNo: string;
     address: string;
     image: string;
     bio: string;
   };
+};
+
+export type IAllUser = {
+  id: string;
+  name: string;
+  email: string;
+  role: string;
+};
+
+export type ISingleUserProfile = {
+  contactNo: string;
+  address: string;
+  image: string;
+  bio: string;
+};
+export type IDProps = {
+  params: any;
 };

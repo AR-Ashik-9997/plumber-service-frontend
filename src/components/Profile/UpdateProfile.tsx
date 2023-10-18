@@ -12,12 +12,7 @@ import { useGetUserQuery } from "@/redux/api/userApi";
 
 const UpdateProfile = () => {
   const { userId: id } = getUserInfo() as any;
-  const {
-    handleSubmit,
-    control,
-    reset,
-    formState: { errors },
-  } = useForm<IProfile>();
+  const { handleSubmit, control, reset } = useForm<IProfile>();
   const { data: userData } = useGetUserQuery(id);
   const [loading, setLoading] = useState<boolean>(false);
 

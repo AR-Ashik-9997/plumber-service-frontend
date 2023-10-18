@@ -1,10 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 "use client";
-import {
-  authKey,
-  isLoggedIn,
-  removeUserInfo,
-} from "@/services/auth_service";
+import { authKey, isLoggedIn, removeUserInfo } from "@/services/auth_service";
 
 import {
   Navbar,
@@ -34,7 +30,6 @@ export default function MainNavbar() {
     removeUserInfo(authKey);
     router.refresh();
   };
-
   const menuItems = [
     "service",
     "Product",
@@ -132,9 +127,14 @@ export default function MainNavbar() {
                 src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
               />
             </DropdownTrigger>
-            <DropdownMenu aria-label="Profile Actions" variant="flat">             
-              <DropdownItem onClick={()=>router.push('dashboard')} key="settings">Dashboard</DropdownItem>            
-              
+            <DropdownMenu aria-label="Profile Actions" variant="flat">
+              <DropdownItem
+                onClick={() => router.push("dashboard")}
+                key="settings"
+              >
+                Dashboard
+              </DropdownItem>
+
               <DropdownItem onClick={handleLogOut} key="logout" color="danger">
                 Log Out
               </DropdownItem>

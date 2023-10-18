@@ -22,3 +22,4 @@ export const removeUserInfo = (key: string) => {
 };
 
 export const authAccess = Cookies.get(authKey);
+

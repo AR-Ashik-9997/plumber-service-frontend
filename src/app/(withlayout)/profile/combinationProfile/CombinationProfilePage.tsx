@@ -10,10 +10,10 @@ const CombinationProfilePage = () => {
   const [changeUi, setChangeUi] = useState<boolean>(false);
   const { data } = useGetUserQuery(id, {
     refetchOnMountOrArgChange: true,
-    pollingInterval: 1000,
+    pollingInterval: 10000,
   });  
   useEffect(() => {
-    if (data !== undefined) {
+    if (!!data) {
       setChangeUi(true);
     }
   }, [changeUi]);

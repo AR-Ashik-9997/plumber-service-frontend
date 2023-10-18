@@ -18,3 +18,14 @@ export type IProfile = {
   bio: string;
 };
 
+export type ICreateUser = {
+  name: string;
+  email: string;
+  password: string;  
+  profile: {   
+    contactNo: string;
+    address: string;
+    image: string;
+    bio: string;
+  };
+};

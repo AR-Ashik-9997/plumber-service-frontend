@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
 import { useDeleteServiceMutation, useGetAllServicesQuery } from "@/redux/api/serviceApi";
 
-const AllServices = () => {
+const ViewServices = () => {
   const { data, isLoading } = useGetAllServicesQuery(undefined, {
     refetchOnMountOrArgChange: true,
     pollingInterval: 10000,
@@ -149,4 +149,4 @@ const AllServices = () => {
   );
 };
 
-export default AllServices;
+export default ViewServices;

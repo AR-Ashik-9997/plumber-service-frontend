@@ -18,8 +18,10 @@ import {
   Avatar,
   Dropdown,
 } from "@nextui-org/react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import logo from "../../assets/logo.svg";
 
 export default function MainNavbar() {
   const [isMenuOpen, setIsMenuOpen] = useState<Boolean>(false);
@@ -41,22 +43,16 @@ export default function MainNavbar() {
   ];
 
   return (
-    <Navbar onMenuOpenChange={setIsMenuOpen}>
+    <Navbar onMenuOpenChange={setIsMenuOpen} className="py-4">
       <NavbarContent>
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           className="sm:hidden"
         />
         <NavbarBrand>
-          <svg fill="none" height="36" viewBox="0 0 32 32" width="36">
-            <path
-              clipRule="evenodd"
-              d="M17.6482 10.1305L15.8785 7.02583L7.02979 22.5499H10.5278L17.6482 10.1305ZM19.8798 14.0457L18.11 17.1983L19.394 19.4511H16.8453L15.1056 22.5499H24.7272L19.8798 14.0457Z"
-              fill="currentColor"
-              fillRule="evenodd"
-            />
-          </svg>
-          <p className="font-bold text-inherit">ACME</p>
+          <button onClick={() => router.push("/")}>
+            <Image src={logo} alt="logo" width={150} height={200} />
+          </button>
         </NavbarBrand>
       </NavbarContent>
 
@@ -67,7 +63,7 @@ export default function MainNavbar() {
         <NavbarItem>
           <Link
             className="text-black-2 font-medium hover:text-[#E83A15]"
-            href="#"
+            href="/services"
           >
             Service
           </Link>

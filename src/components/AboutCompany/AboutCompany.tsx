@@ -5,8 +5,11 @@ import about2 from "../../assets/about_1_2.jpg";
 import title_shape from "../../assets/title_shape_1.svg";
 import { Button } from "@nextui-org/react";
 import { HiMiniCheckBadge } from "react-icons/hi2";
+import { useRouter } from "next/navigation";
+
 
 const AboutCompany = () => {
+  const router = useRouter();
   return (
     <section className="py-12 px-4 sm:px-8 md:px-12 lg:px-16">
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 mx-auto w-4/5">
@@ -80,6 +83,7 @@ const AboutCompany = () => {
           </section>
           <div className="flex justify-center md:justify-start">
             <Button
+              onClick={() => router.push("/about")}
               size="lg"
               radius="none"
               className="font-semibold bg-[#E83A15] text-white"

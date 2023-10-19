@@ -1,9 +1,9 @@
-import AllServices from "@/components/ServiceManage/AllServices";
+import ViewServices from "@/components/ServiceManage/ViewServices";
 
 const ViewAllServices = () => {
   return (
     <div>
-      <AllServices />
+      <ViewServices />
     </div>
   );
 };

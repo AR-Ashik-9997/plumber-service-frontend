@@ -113,6 +113,7 @@ const Services = () => {
         </div>
         <div className="flex justify-center  xl:justify-end">
           <Button
+            onClick={() => router.push("/services")}
             size="lg"
             radius="none"
             className="font-semibold bg-[#E83A15] text-white flex items-center"

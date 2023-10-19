@@ -4,8 +4,10 @@ import { HiMiniArrowSmallRight } from "react-icons/hi2";
 import style from "./banner.module.css";
 import title_shape from "../../assets/title_shape_1.svg";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const Topbanner = () => {
+  const router = useRouter();
   return (
     <section className={`${style.top_banner}`}>
       <div className="w-full  xl:w-1/2 p-4 bg-black bg-opacity-80 h-full">
@@ -37,6 +39,7 @@ const Topbanner = () => {
         <div className=" flex items-center justify-center">
           <div className="pt-6 w-full md:w-3/4 lg:w-1/3 xl:w-3/4 2xl:w-3/5 flex gap-4">
             <Button
+              onClick={() => router.push("/about")}
               size="lg"
               radius="none"
               className="font-semibold bg-[#E83A15] text-sm text-white flex items-center"

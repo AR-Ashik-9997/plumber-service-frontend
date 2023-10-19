@@ -43,7 +43,14 @@ const LoginForm = () => {
     <section>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
         <div className="flex items-center justify-center">
-          <Image className=" w-full p-4" src="https://i.ibb.co/brpnQQP/auth.png" alt="Card" />
+          <Image
+            className=" w-full p-4"
+            src="https://i.ibb.co/brpnQQP/auth.png"
+            width={900}
+            height={900}
+            layout="responsive"
+            alt="Card"
+          />
         </div>
         <div className="min-h-screen bg-gradient-to-r from-[#00bcd4] to-indigo-500 flex flex-col justify-center sm:px-6 lg:px-8 p-4">
           <div className="sm:mx-auto sm:w-full sm:max-w-md">
@@ -60,7 +67,11 @@ const LoginForm = () => {
                     label="Email"
                     {...register("email", { required: true })}
                   />
-                  {errors.email && <p className="text-[red] text-sm mt-1">This Field is required</p>}
+                  {errors.email && (
+                    <p className="text-[red] text-sm mt-1">
+                      This Field is required
+                    </p>
+                  )}
                   <Input
                     label="Password"
                     variant="bordered"
@@ -80,7 +91,11 @@ const LoginForm = () => {
                     }
                     type={isVisible ? "text" : "password"}
                   />
-                  {errors.password && <p className="text-[red] text-sm mt-1">This Field is required</p>}
+                  {errors.password && (
+                    <p className="text-[red] text-sm mt-1">
+                      This Field is required
+                    </p>
+                  )}
                 </div>
                 <div className="flex justify-center items-center mt-4">
                   {!loading ? (

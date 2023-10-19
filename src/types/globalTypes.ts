@@ -60,7 +60,7 @@ export type IServices = {
   image: string;
   price: string;
   category: string;
-  serviceDetails: {    
+  serviceDetails: {
     title: string;
     description: string;
     feature1: string;
@@ -70,7 +70,7 @@ export type IServices = {
     feature5: string;
   };
 };
-export type IGetServiceDetails = {  
+export type IGetServiceDetails = {
   title: string;
   description: string;
   feature1: string;
@@ -84,4 +84,17 @@ export type IGetService = {
   title: string;
   price: string;
   category: string;
+};
+
+export type ICreateAdmin = {
+  name: string;
+  email: string;
+  password: string;
+  role: string;
+  profile: {
+    contactNo: string;
+    address: string;
+    image: string;
+    bio: string;
+  };
 };

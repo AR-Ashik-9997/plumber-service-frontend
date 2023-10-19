@@ -2,7 +2,6 @@
 import { Button } from "@nextui-org/react";
 import { HiMiniArrowSmallRight } from "react-icons/hi2";
 import style from "./banner.module.css";
-import title_shape from "../../assets/title_shape_1.svg";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
@@ -14,7 +13,7 @@ const Topbanner = () => {
         <div className="flex justify-center items-center">
           <div className="text-white md:pt-20">
             <div className="mb-4 flex items-center gap-4">
-              <Image src={title_shape} alt="" width={40} height={40} />
+              <Image src="https://i.ibb.co/VqhCC6t/title-shape-1.png" alt="" width={40} height={40} />
               <p className="text-[#E83A15] text-sm md:text-2xl lg:text-xl font-bold">
                 We are master of plumbing services
               </p>
@@ -49,7 +48,12 @@ const Topbanner = () => {
                 <HiMiniArrowSmallRight />
               </span>
             </Button>
-            <Button size="lg" radius="none" className="font-semibold text-sm">
+            <Button
+              onClick={() => router.push("/contacts")}
+              size="lg"
+              radius="none"
+              className="font-semibold text-sm"
+            >
               CONTACT US
               <span className="text-2xl">
                 <HiMiniArrowSmallRight />

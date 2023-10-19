@@ -1,12 +1,8 @@
 "use client";
 import Image from "next/image";
-import about1 from "../../assets/about_1_1.jpg";
-import about2 from "../../assets/about_1_2.jpg";
-import title_shape from "../../assets/title_shape_1.svg";
 import { Button } from "@nextui-org/react";
 import { HiMiniCheckBadge } from "react-icons/hi2";
 import { useRouter } from "next/navigation";
-
 
 const AboutCompany = () => {
   const router = useRouter();
@@ -16,16 +12,35 @@ const AboutCompany = () => {
         <div className="flex justify-center">
           <div className="relative">
             <div className="block">
-              <Image src={about1} className="mx-auto p-4" alt="" />
+              <Image
+                src="https://i.ibb.co/vvnc4pC/about-1-1.jpg"
+                className="w-full mx-auto p-4"
+                alt=""
+                width={500}
+                height={500}
+                layout="responsive"
+              />
             </div>
             <div className="absolute bottom-0 xl:bottom-20 2xl:bottom-0 right-0 z-1 bg-[#E0E0E0] w-1/2">
-              <Image src={about2} className="mx-auto p-4" alt="" />
+              <Image
+                src="https://i.ibb.co/6m63Cx8/about-1-2.jpg"
+                className="w-full mx-auto p-4"
+                alt=""
+                width={500}
+                height={500}
+                layout="responsive"
+              />
             </div>
           </div>
         </div>
         <div className="text-black-2 py-8  md:p-4">
           <div className="mb-4 flex items-center gap-4">
-            <Image src={title_shape} alt="" width={40} height={40} />
+            <Image
+              src="https://i.ibb.co/VqhCC6t/title-shape-1.png"
+              alt=""
+              width={40}
+              height={40}            
+            />
             <p className="text-[#E83A15] font-bold text-lg md:text-xl">
               About Our Company
             </p>

@@ -3,29 +3,27 @@ import { Button } from "@nextui-org/react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import test from "../../assets/test.png";
 import { useRouter } from "next/navigation";
 import { Autoplay } from "swiper/modules";
-import title_shape from "../../assets/title_shape_1.svg";
 
 const blogData = [
   {
-    image: test,
+    image: "https://i.ibb.co/6yzs1cY/test.png",
     title: "We’ll make your old kitchen Look brand new.",
     link: "#",
   },
   {
-    image: test,
+    image: "https://i.ibb.co/6yzs1cY/test.png",
     title: "We’ll make your old kitchen Look brand new.",
     link: "#",
   },
   {
-    image: test,
+    image: "https://i.ibb.co/6yzs1cY/test.png",
     title: "We’ll make your old kitchen Look brand new.",
     link: "#",
   },
   {
-    image: test,
+    image: "https://i.ibb.co/6yzs1cY/test.png",
     title: "We’ll make your old kitchen Look brand new.",
     link: "#",
   },
@@ -36,7 +34,12 @@ const Blog = () => {
     <section className="py-12 px-4 sm:px-8 md:px-12 lg:px-16">
       <div className="text-black-2 font-bold text-center py-8">
         <div className="mb-4 flex justify-center items-center gap-4">
-          <Image src={title_shape} alt="" width={40} height={40} />
+          <Image
+            src="https://i.ibb.co/VqhCC6t/title-shape-1.png"
+            alt=""
+            width={40}
+            height={40}
+          />
           <p className="text-[#E83A15] text-xl">Blogs</p>
         </div>
         <h1 className="text-2xl md:text-4xl">Our Latest New And Articles</h1>
@@ -74,6 +77,8 @@ const Blog = () => {
                   src={item?.image}
                   alt="Card Image"
                   className="w-full object-cover  mx-auto p-4"
+                  width={100}
+                  height={100}
                 />
                 <div className="px-6 py-4">
                   <div className="font-bold text-xl xl:text-2xl text-black-2 mb-2">

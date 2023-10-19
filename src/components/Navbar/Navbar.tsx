@@ -21,7 +21,6 @@ import {
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import logo from "../../assets/logo.svg";
 
 export default function MainNavbar() {
   const [isMenuOpen, setIsMenuOpen] = useState<Boolean>(false);
@@ -51,7 +50,7 @@ export default function MainNavbar() {
         />
         <NavbarBrand>
           <button onClick={() => router.push("/")}>
-            <Image src={logo} alt="logo" width={150} height={200} />
+            <Image src="https://i.ibb.co/tz1P1XM/logo.png"alt="logo" width={150} height={200} />
           </button>
         </NavbarBrand>
       </NavbarContent>
@@ -95,7 +94,7 @@ export default function MainNavbar() {
         <NavbarItem>
           <Link
             className="text-black-2 font-medium hover:text-[#E83A15]"
-            href="#"
+            href="/about"
           >
             About Us
           </Link>
@@ -103,7 +102,7 @@ export default function MainNavbar() {
         <NavbarItem>
           <Link
             className="text-black-2 font-medium hover:text-[#E83A15]"
-            href="#"
+            href="/contacts"
           >
             Contact Us
           </Link>

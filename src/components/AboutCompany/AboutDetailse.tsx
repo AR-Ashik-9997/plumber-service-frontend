@@ -1,11 +1,6 @@
 "use client";
 import Image from "next/image";
 import AboutCompany from "./AboutCompany";
-import choose_feature1 from "../../assets/choose_feature_1.svg";
-import choose_feature2 from "../../assets/choose_feature_2.svg";
-import choose_feature3 from "../../assets/choose_feature_3.svg";
-import choose_feature4 from "../../assets/choose_feature_4.svg";
-import title_shape from "../../assets/title_shape_1.svg";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { useRouter } from "next/navigation";
@@ -13,34 +8,24 @@ import style from "../common/Common.module.css";
 
 const TeamData = [
   {
-    image: choose_feature4,
-    title: "Alexandar",
-    link: "#",
+    image: "https://i.ibb.co/hLqbK1v/team-1-1.jpg",
+    title: "Rokie Royals",
   },
   {
-    image: choose_feature4,
-    title: "Alexandar",
-    link: "#",
+    image: "https://i.ibb.co/DWXKwsJ/team-1-2.jpg",
+    title: "Jesica Sinthia",
   },
   {
-    image: choose_feature4,
-    title: "Alexandar",
-    link: "#",
+    image: "https://i.ibb.co/dpq1QHG/team-1-3.jpg",
+    title: "Alex Michel",
   },
   {
-    image: choose_feature4,
-    title: "Alexandar",
-    link: "#",
-  },
-  {
-    image: choose_feature4,
-    title: "Alexandar",
-    link: "#",
+    image: "https://i.ibb.co/7zb41zG/team-1-5.jpg",
+    title: "Sanjida Carlos",
   },
 ];
 
 const AboutDetailse = () => {
-  const router = useRouter();
   return (
     <section>
       <div className={`${style.common_banner}`}>
@@ -54,9 +39,11 @@ const AboutDetailse = () => {
         <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 py-12 bg-[#f7f7f7] w-full xl:w-3/4 mx-auto">
           <div className="max-w-sm rounded overflow-hidden shadow-xl">
             <Image
-              src={choose_feature1}
+              src="https://i.ibb.co/RYFQCcJ/choose-feature-1.png"
               alt="Card Image"
               className="w-25 h-25 mx-auto p-4"
+              width={100}
+              height={100}
             />
             <div className="px-6 py-4 flex flex-col items-center">
               <div className="font-bold text-xl text-black-2 mb-2">
@@ -70,9 +57,11 @@ const AboutDetailse = () => {
           </div>
           <div className="max-w-sm rounded overflow-hidden shadow-xl">
             <Image
-              src={choose_feature2}
+              src="https://i.ibb.co/pK2vFsj/choose-feature-2.png"
               alt="Card Image"
               className="w-25 h-25 mx-auto p-4"
+              width={100}
+              height={100}
             />
             <div className="px-6 py-4 flex flex-col items-center">
               <div className="font-bold text-xl text-black-2 mb-2">
@@ -86,9 +75,11 @@ const AboutDetailse = () => {
           </div>
           <div className="max-w-sm rounded overflow-hidden shadow-xl">
             <Image
-              src={choose_feature3}
+              src="https://i.ibb.co/D8S7G63/choose-feature-3.png"
               alt="Card Image"
               className="w-25 h-25 mx-auto p-4"
+              width={100}
+              height={100}
             />
             <div className="px-6 py-4 flex flex-col items-center">
               <div className="font-bold text-xl text-black-2 mb-2">
@@ -102,9 +93,11 @@ const AboutDetailse = () => {
           </div>
           <div className="max-w-sm rounded overflow-hidden shadow-xl">
             <Image
-              src={choose_feature4}
+              src="https://i.ibb.co/MhpT81W/choose-feature-4.png"
               alt="Card Image"
               className="w-25 h-25 mx-auto p-4"
+              width={100}
+              height={100}
             />
             <div className="px-6 py-4 flex flex-col items-center">
               <div className="font-bold text-xl text-black-2 mb-2">
@@ -119,10 +112,15 @@ const AboutDetailse = () => {
         </section>
         <AboutCompany />
         <section>
-          <div className="w-full">
+          <div className="w-full  h-auto md:h-full lg:h-auto xl:h-full">
             <div className="text-black-2 font-bold text-center py-8">
               <div className="mb-4 flex justify-center items-center gap-4">
-                <Image src={title_shape} alt="" width={40} height={40} />
+                <Image
+                  src="https://i.ibb.co/VqhCC6t/title-shape-1.png"
+                  alt=""
+                  width={40}
+                  height={40}
+                />
                 <p className="text-[#E83A15] text-xl md:text-2xl">
                   Expert Team
                 </p>
@@ -149,10 +147,6 @@ const AboutDetailse = () => {
                     slidesPerView: 3,
                     spaceBetween: 30,
                   },
-                  1280: {
-                    slidesPerView: 4,
-                    spaceBetween: 30,
-                  },
                 }}
                 className="mySwiper"
               >
@@ -162,15 +156,15 @@ const AboutDetailse = () => {
                       <Image
                         src={item?.image}
                         alt="Card Image"
-                        className="w-full  bg-[#3C4250]  mx-auto p-4"
+                        className="bg-[#3C4250]  mx-auto p-4"
+                        width={100}
+                        height={100}
+                        layout="responsive"
                       />
                       <div className="px-6 py-4 flex justify-center">
-                        <button
-                          onClick={() => router.push(`${item.link}`)}
-                          className="font-bold text-2xl text-black-2 mb-2"
-                        >
+                        <h2 className="font-bold text-2xl text-black-2 mb-2">
                           {item?.title}
-                        </button>
+                        </h2>
                       </div>
                     </div>
                   </SwiperSlide>

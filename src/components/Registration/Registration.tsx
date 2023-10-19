@@ -1,6 +1,5 @@
 "use client";
 import { useForm, SubmitHandler } from "react-hook-form";
-import signin from "../../assets/auth/auth.svg";
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -51,7 +50,7 @@ const RegistrationPage = () => {
     <section>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
         <div className="flex items-center justify-center">
-          <Image className=" w-full p-4" src={signin} alt="Card" />
+          <Image className=" w-full p-4" src='https://i.ibb.co/brpnQQP/auth.png'alt="Card" />
         </div>
         <div className="min-h-screen bg-gradient-to-r from-[#00bcd4] to-indigo-500 flex flex-col justify-center sm:px-6 lg:px-8 p-4">
           <div className="sm:mx-auto sm:w-full sm:max-w-md">

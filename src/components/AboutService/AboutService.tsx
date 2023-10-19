@@ -1,9 +1,5 @@
 "use client";
 import Image from "next/image";
-import feature1 from "../../assets/choose_feature_1.svg";
-import feature2 from "../../assets/choose_feature_2.svg";
-import why from "../../assets/why_1_1.jpg";
-import title_shape from "../../assets/title_shape_1.svg";
 
 const AboutService = () => {
   return (
@@ -11,7 +7,12 @@ const AboutService = () => {
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 mx-auto w-4/5">
         <div className="text-black-2 py-8">
           <div className="mb-4 flex items-center gap-4">
-            <Image src={title_shape} alt="" width={40} height={40} />
+            <Image
+              src="https://i.ibb.co/VqhCC6t/title-shape-1.png"
+              alt=""
+              width={40}
+              height={40}
+            />
             <p className="text-[#E83A15] text-base md:text-xl font-bold">
               Why Choosing Our Services
             </p>
@@ -28,9 +29,11 @@ const AboutService = () => {
           <section className="grid grid-cols-1 md:grid-cols-2 gap-4 py-12 bg-[#f7f7f7]">
             <div className="max-w-sm rounded overflow-hidden shadow-xl">
               <Image
-                src={feature1}
+                src="https://i.ibb.co/RYFQCcJ/choose-feature-1.png"
                 alt="Card Image"
                 className="w-30 h-30 object-cover mx-auto p-4"
+                width={100}
+                height={100}
               />
               <div className="px-6 py-4 flex flex-col items-center">
                 <div className="font-bold text-xl text-black-2 mb-2">
@@ -44,9 +47,11 @@ const AboutService = () => {
             </div>
             <div className="max-w-sm rounded overflow-hidden shadow-xl">
               <Image
-                src={feature2}
+                src="https://i.ibb.co/pK2vFsj/choose-feature-2.png"
                 alt="Card Image"
                 className="w-30 h-30 object-cover mx-auto p-4"
+                width={100}
+                height={100}
               />
               <div className="px-6 py-4 flex flex-col items-center">
                 <div className="font-bold text-xl text-black-2 mb-2">
@@ -63,7 +68,13 @@ const AboutService = () => {
         <div>
           <div className="relative">
             <div className="block">
-              <Image src={why} className="mx-auto p-4" alt="" />
+              <Image
+                src="https://i.ibb.co/ZxXHMDP/why-1-1.jpg"
+                className=" w-3/4 mx-auto p-4"
+                alt=""
+                width={800}
+                height={800}
+              />
             </div>
             <div className="absolute -bottom-10 right-10 lg:right-40 xl:right-10 2xl:right-20">
               <div className="shadow-2xl w-40 py-4 2xl:py-12  bg-white">

@@ -3,95 +3,93 @@ import { Button } from "@nextui-org/react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import test from "../../assets/test.png";
 import { useRouter } from "next/navigation";
 import { Autoplay } from "swiper/modules";
-import title_shape from "../../assets/title_shape_1.svg";
 
 const cardData = [
   {
-    image: test,
+    image: "https://i.ibb.co/6yzs1cY/test.png",
     title: "Card Title",
     description:
       " This is a sample card description. You can replace it with your own      content",
-    link: "#",
+    link: "/serviceDetailse",
   },
   {
-    image: test,
+    image: "https://i.ibb.co/6yzs1cY/test.png",
     title: "Card Title",
     description:
       " This is a sample card description. You can replace it with your own      content",
-    link: "#",
+    link: "/serviceDetailse",
   },
   {
-    image: test,
+    image: "https://i.ibb.co/6yzs1cY/test.png",
     title: "Card Title",
     description:
       " This is a sample card description. You can replace it with your own      content",
-    link: "#",
+    link: "/serviceDetailse",
   },
   {
-    image: test,
+    image: "https://i.ibb.co/6yzs1cY/test.png",
     title: "Card Title",
     description:
       " This is a sample card description. You can replace it with your own      content",
-    link: "#",
+    link: "/serviceDetailse",
   },
   {
-    image: test,
+    image: "https://i.ibb.co/6yzs1cY/test.png",
     title: "Card Title",
     description:
       " This is a sample card description. You can replace it with your own      content",
-    link: "#",
+    link: "/serviceDetailse",
   },
   {
-    image: test,
+    image: "https://i.ibb.co/6yzs1cY/test.png",
     title: "Card Title",
     description:
       " This is a sample card description. You can replace it with your own      content",
-    link: "#",
+    link: "/serviceDetailse",
   },
   {
-    image: test,
+    image: "https://i.ibb.co/6yzs1cY/test.png",
     title: "Card Title",
     description:
       " This is a sample card description. You can replace it with your own      content",
-    link: "#",
+    link: "/serviceDetailse",
   },
   {
-    image: test,
+    image: "https://i.ibb.co/6yzs1cY/test.png",
     title: "Card Title",
     description:
       " This is a sample card description. You can replace it with your own      content",
-    link: "#",
+    link: "/serviceDetailse",
   },
   {
-    image: test,
+    image: "https://i.ibb.co/6yzs1cY/test.png",
     title: "Card Title",
     description:
       " This is a sample card description. You can replace it with your own      content",
-    link: "#",
+    link: "/serviceDetailse",
   },
   {
-    image: test,
+    image: "https://i.ibb.co/6yzs1cY/test.png",
     title: "Card Title",
     description:
       " This is a sample card description. You can replace it with your own      content",
-    link: "#",
+    link: "/serviceDetailse",
   },
   {
-    image: test,
+    image: "https://i.ibb.co/6yzs1cY/test.png",
     title: "Card Title",
     description:
       " This is a sample card description. You can replace it with your own      content",
-    link: "#",
+    link: "/serviceDetailse",
   },
   {
-    image: test,
+    image: "https://i.ibb.co/6yzs1cY/test.png",
     title: "Card Title",
     description:
       " This is a sample card description. You can replace it with your own      content",
-    link: "#",
+    link: "/serviceDetailse",
   },
 ];
 const Services = () => {
@@ -104,7 +102,12 @@ const Services = () => {
       >
         <div className="text-black-2 font-bold text-center xl:text-start py-8">
           <div className="mb-4 flex justify-center 2xl:justify-normal items-center gap-4">
-            <Image src={title_shape} alt="" width={40} height={40} />
+            <Image
+              src="https://i.ibb.co/VqhCC6t/title-shape-1.png"
+              alt=""
+              width={40}
+              height={40}
+            />
             <p className="text-[#E83A15] text-xl">Our Services</p>
           </div>
           <h1 className="text-2xl md:text-3xl 2xl:text-4xl">
@@ -155,6 +158,8 @@ const Services = () => {
                   src={item?.image}
                   alt="Card Image"
                   className="w-48 h-48 object-cover rounded-full border border-black-2 bg-black mx-auto p-4"
+                  width={100}
+                  height={100}
                 />
                 <div className="px-6 py-4 flex flex-col items-center">
                   <div className="font-bold text-xl mb-2">{item?.title}</div>

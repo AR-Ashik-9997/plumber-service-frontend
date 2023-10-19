@@ -1,48 +1,47 @@
 "use client";
 import { Button } from "@nextui-org/react";
 import Image from "next/image";
-import test from "../../assets/test.png";
 import { useRouter } from "next/navigation";
 import style from "../common/Common.module.css";
 
 const cardData = [
   {
-    image: test,
+    image: "https://i.ibb.co/6yzs1cY/test.png",
     title: "Card Title",
     description:
       " This is a sample card description. You can replace it with your own      content",
     link: "/serviceDetailse",
   },
   {
-    image: test,
+    image: "https://i.ibb.co/6yzs1cY/test.png",
     title: "Card Title",
     description:
       " This is a sample card description. You can replace it with your own      content",
     link: "/serviceDetailse",
   },
   {
-    image: test,
+    image: "https://i.ibb.co/6yzs1cY/test.png",
     title: "Card Title",
     description:
       " This is a sample card description. You can replace it with your own      content",
     link: "/serviceDetailse",
   },
   {
-    image: test,
+    image: "https://i.ibb.co/6yzs1cY/test.png",
     title: "Card Title",
     description:
       " This is a sample card description. You can replace it with your own      content",
     link: "/serviceDetailse",
   },
   {
-    image: test,
+    image: "https://i.ibb.co/6yzs1cY/test.png",
     title: "Card Title",
     description:
       " This is a sample card description. You can replace it with your own      content",
     link: "/serviceDetailse",
   },
   {
-    image: test,
+    image: "https://i.ibb.co/6yzs1cY/test.png",
     title: "Card Title",
     description:
       " This is a sample card description. You can replace it with your own      content",
@@ -69,6 +68,8 @@ const AllServices = () => {
                   src={item?.image}
                   alt="Card Image"
                   className="w-48 h-48 object-cover rounded-full border border-black-2 bg-black mx-auto p-4"
+                  width={100}
+                  height={100}
                 />
                 <div className="px-6 py-4 flex flex-col items-center">
                   <div className="font-bold text-xl mb-2">{item?.title}</div>

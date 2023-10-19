@@ -46,3 +46,42 @@ export type ISingleUserProfile = {
 export type IDProps = {
   params: any;
 };
+type IDetailsService = {
+  banner: string;
+  title: string;
+  description: string;
+  images: [string];
+  servicePoint: [string];
+};
+export type IServices = {
+  id: string;
+  title: string;
+  description: string;
+  image: string;
+  price: string;
+  category: string;
+  serviceDetails: {
+    banner: string;
+    title: string;
+    description: string;
+    feature1: string;
+    feature2: string;
+    feature3: string;
+    feature4: string;
+  };
+};
+export type IGetServiceDetails = {
+  banner: string;
+  title: string;
+  description: string;
+  feature1: string;
+  feature2: string;
+  feature3: string;
+  feature4: string;
+};
+export type IGetService = {
+  id: string;
+  title: string;
+  price: string;
+  category: string;
+};

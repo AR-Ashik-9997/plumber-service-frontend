@@ -1,12 +1,11 @@
 "use client";
 import Loader from "../common/Loader";
-import { useDeleteSingleUserMutation } from "@/redux/api/userApi";
-import { IAllUser, IGetService } from "@/types/globalTypes";
+import { IGetService } from "@/types/globalTypes";
 import Link from "next/link";
 import Breadcrumb from "../Breadcrumbs/Breadcrumb";
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
-import { useGetAllServicesQuery } from "@/redux/api/serviceApi";
+import { useDeleteServiceMutation, useGetAllServicesQuery } from "@/redux/api/serviceApi";
 
 const AllServices = () => {
   const { data, isLoading } = useGetAllServicesQuery(undefined, {
@@ -14,7 +13,7 @@ const AllServices = () => {
     pollingInterval: 10000,
   });
 
-  const [DeleteSingleUser] = useDeleteSingleUserMutation();
+  const [DeleteService] = useDeleteServiceMutation();
   const router = useRouter();
   const handleDelete = (id: string) => {
     Swal.fire({
@@ -27,7 +26,7 @@ const AllServices = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        DeleteSingleUser(id).then(() => {
+        DeleteService(id).then(() => {
           Swal.fire("Deleted!", "Your file has been deleted.", "success"),
             router.refresh();
         });

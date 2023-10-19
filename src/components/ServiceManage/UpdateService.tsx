@@ -1,9 +1,8 @@
-
 "use client";
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { IDProps, IGetServiceDetails, IServices } from "@/types/globalTypes";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { authAccess } from "@/services/auth_service";
 import axios from "axios";
 import { Button } from "@nextui-org/react";
@@ -21,14 +20,13 @@ const UpdateService = ({ params }: IDProps) => {
   const { handleSubmit, reset, control } = useForm<IServices>();
   const [loading, setLoading] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
-  const onSubmit: SubmitHandler<IServices> = async (data: IServices) => {
+  const onSubmit: SubmitHandler<IServices> = async (data: IServices) => { 
     setLoading(true);
     const formData = new FormData();
-    formData.append("file1", data.image[0]);
-    formData.append("file2", data.serviceDetails.banner[0]);
+    formData.append("file", data.image);    
     formData.append("data", JSON.stringify(data));
     await axios
-      .post(`${process.env.DB_HOST}/services`, formData, {
+      .patch(`${process.env.DB_HOST}/services/${id}`, formData, {
         headers: {
           Authorization: `${authAccess}`,
           "Content-Type": "multipart/form-data",
@@ -49,7 +47,7 @@ const UpdateService = ({ params }: IDProps) => {
         <Loader />
       ) : (
         <div className="mx-auto">
-          <Breadcrumb pageName="Create a new Service" />
+          <Breadcrumb pageName="Edite Service" />
           <form onSubmit={handleSubmit(onSubmit)}>
             <div>
               <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
@@ -84,7 +82,7 @@ const UpdateService = ({ params }: IDProps) => {
                               render={({ field }) => (
                                 <input
                                   {...field}
-                                  className="w-full rounded border border-stroke bg-gray py-3 pl-11.5 pr-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
+                                  className="w-full rounded border border-stroke bg-gray py-3 px-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
                                   type="text"
                                   id="title"
                                 />
@@ -140,7 +138,7 @@ const UpdateService = ({ params }: IDProps) => {
                               render={({ field }) => (
                                 <input
                                   {...field}
-                                  className="w-full rounded border border-stroke bg-gray py-3 pl-11.5 pr-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
+                                  className="w-full rounded border border-stroke bg-gray py-3 px-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
                                   type="text"
                                   id="price"
                                 />
@@ -162,7 +160,7 @@ const UpdateService = ({ params }: IDProps) => {
                             render={({ field }) => (
                               <input
                                 {...field}
-                                className="w-full rounded border border-stroke bg-gray py-3 pl-11.5 pr-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
+                                className="w-full rounded border border-stroke bg-gray py-3 px-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
                                 type="text"
                                 id="Category"
                               />
@@ -173,7 +171,7 @@ const UpdateService = ({ params }: IDProps) => {
                       <div className="mb-5.5">
                         <label
                           className="mb-3 block text-sm font-medium text-black dark:text-white"
-                          htmlFor="bio"
+                          htmlFor="description"
                         >
                           Description
                         </label>
@@ -212,14 +210,14 @@ const UpdateService = ({ params }: IDProps) => {
                           <Controller
                             name="description"
                             control={control}
+                            defaultValue={serviceData?.description}
                             render={({ field }) => (
                               <textarea
                                 {...field}
                                 className="w-full rounded border border-stroke bg-gray py-3 pl-11.5 pr-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
-                                id="bio"
+                                id="description"
                                 rows={6}
-                                placeholder="Write your bio here"
-                                defaultValue={serviceData?.description}
+                                placeholder="Write your bio here"                                
                               ></textarea>
                             )}
                           />
@@ -256,7 +254,7 @@ const UpdateService = ({ params }: IDProps) => {
                                     render={({ field }) => (
                                       <input
                                         {...field}
-                                        className="w-full rounded border border-stroke bg-gray py-3 pl-11.5 pr-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
+                                        className="w-full rounded border border-stroke bg-gray py-3 px-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
                                         type="text"
                                         id="serviceDetails.title"
                                       />
@@ -264,39 +262,6 @@ const UpdateService = ({ params }: IDProps) => {
                                   />
                                 </div>
                               </div>
-                              <div className="w-full sm:w-1/2">
-                                <label
-                                  className="mb-3 block text-sm font-medium text-black dark:text-white "
-                                  htmlFor="bannerimageField"
-                                >
-                                  Banner Image
-                                </label>
-                                <Controller
-                                  name="serviceDetails.banner"
-                                  control={control}
-                                  render={({
-                                    field: { value, onChange, ...field },
-                                  }) => {
-                                    return (
-                                      <input
-                                        {...field}
-                                        onChange={(event) => {
-                                          onChange(
-                                            event.target.files
-                                              ? event.target.files[0]
-                                              : null
-                                          );
-                                        }}
-                                        type="file"
-                                        id="profile"
-                                        accept="image/*"
-                                      />
-                                    );
-                                  }}
-                                />
-                              </div>
-                            </div>
-                            <div className="mb-5.5 flex flex-col gap-5.5 sm:flex-row">
                               <div className="w-full sm:w-1/2">
                                 <label
                                   className="mb-3 block text-sm font-medium text-black dark:text-white "
@@ -312,7 +277,7 @@ const UpdateService = ({ params }: IDProps) => {
                                     render={({ field }) => (
                                       <input
                                         {...field}
-                                        className="w-full rounded border border-stroke bg-gray py-3 pl-11.5 pr-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
+                                        className="w-full rounded border border-stroke bg-gray py-3 px-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
                                         type="text"
                                         id="feature1"
                                       />
@@ -320,6 +285,8 @@ const UpdateService = ({ params }: IDProps) => {
                                   />
                                 </div>
                               </div>
+                            </div>
+                            <div className="mb-5.5 flex flex-col gap-5.5 sm:flex-row">
                               <div className="w-full sm:w-1/2">
                                 <label
                                   className="mb-3 block text-sm font-medium text-black dark:text-white "
@@ -331,20 +298,18 @@ const UpdateService = ({ params }: IDProps) => {
                                   <Controller
                                     name="serviceDetails.feature2"
                                     control={control}
-                                    defaultValue={item?.feature2}
+                                    defaultValue={item?.feature1}
                                     render={({ field }) => (
                                       <input
                                         {...field}
-                                        className="w-full rounded border border-stroke bg-gray py-3 pl-11.5 pr-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
+                                        className="w-full rounded border border-stroke bg-gray py-3 px-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
                                         type="text"
-                                        id="feature2"
+                                        id="feature1"
                                       />
                                     )}
                                   />
                                 </div>
                               </div>
-                            </div>
-                            <div className="mb-5.5 flex flex-col gap-5.5 sm:flex-row">
                               <div className="w-full sm:w-1/2">
                                 <label
                                   className="mb-3 block text-sm font-medium text-black dark:text-white "
@@ -360,7 +325,7 @@ const UpdateService = ({ params }: IDProps) => {
                                     render={({ field }) => (
                                       <input
                                         {...field}
-                                        className="w-full rounded border border-stroke bg-gray py-3 pl-11.5 pr-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
+                                        className="w-full rounded border border-stroke bg-gray py-3 px-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
                                         type="text"
                                         id="feature3"
                                       />
@@ -368,6 +333,8 @@ const UpdateService = ({ params }: IDProps) => {
                                   />
                                 </div>
                               </div>
+                            </div>
+                            <div className="mb-5.5 flex flex-col gap-5.5 sm:flex-row">
                               <div className="w-full sm:w-1/2">
                                 <label
                                   className="mb-3 block text-sm font-medium text-black dark:text-white "
@@ -383,7 +350,7 @@ const UpdateService = ({ params }: IDProps) => {
                                     render={({ field }) => (
                                       <input
                                         {...field}
-                                        className="w-full rounded border border-stroke bg-gray py-3 pl-11.5 pr-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
+                                        className="w-full rounded border border-stroke bg-gray py-3 px-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
                                         type="text"
                                         id="feature4"
                                       />
@@ -391,6 +358,29 @@ const UpdateService = ({ params }: IDProps) => {
                                   />
                                 </div>
                               </div>
+                              <div className="w-full sm:w-1/2">
+                                <label
+                                  className="mb-3 block text-sm font-medium text-black dark:text-white "
+                                  htmlFor="feature5"
+                                >
+                                  Service Feature 5
+                                </label>
+                                <div>
+                                  <Controller
+                                    name="serviceDetails.feature5"
+                                    control={control}
+                                    defaultValue={item?.feature5}
+                                    render={({ field }) => (
+                                      <input
+                                        {...field}
+                                        className="w-full rounded border border-stroke bg-gray py-3 px-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
+                                        type="text"
+                                        id="feature5"
+                                      />
+                                    )}
+                                  />
+                                </div>
+                              </div>                             
                             </div>
                             <div className="mb-5.5">
                               <label
@@ -441,14 +431,14 @@ const UpdateService = ({ params }: IDProps) => {
                                 <Controller
                                   name="serviceDetails.description"
                                   control={control}
+                                  defaultValue={item?.description}
                                   render={({ field }) => (
                                     <textarea
                                       {...field}
                                       className="w-full rounded border border-stroke bg-gray py-3 pl-11.5 pr-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
                                       id="bio"
                                       rows={6}
-                                      placeholder="Write your bio here"
-                                      defaultValue={item?.description}
+                                      placeholder="Write your bio here"                                      
                                     ></textarea>
                                   )}
                                 />

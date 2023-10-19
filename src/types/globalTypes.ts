@@ -60,24 +60,24 @@ export type IServices = {
   image: string;
   price: string;
   category: string;
-  serviceDetails: {
-    banner: string;
+  serviceDetails: {    
     title: string;
     description: string;
     feature1: string;
     feature2: string;
     feature3: string;
     feature4: string;
+    feature5: string;
   };
 };
-export type IGetServiceDetails = {
-  banner: string;
+export type IGetServiceDetails = {  
   title: string;
   description: string;
   feature1: string;
   feature2: string;
   feature3: string;
   feature4: string;
+  feature5: string;
 };
 export type IGetService = {
   id: string;

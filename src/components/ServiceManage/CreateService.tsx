@@ -22,8 +22,7 @@ const CreateService = () => {
   const onSubmit: SubmitHandler<IServices> = async (data: IServices) => {
     setLoading(true);
     const formData = new FormData();
-    formData.append("file1", data.image[0]);
-    formData.append("file2", data.serviceDetails.banner[0]);
+    formData.append("file", data.image[0]);
     formData.append("data", JSON.stringify(data));
     await axios
       .post(`${process.env.DB_HOST}/services`, formData, {
@@ -80,7 +79,7 @@ const CreateService = () => {
                           <div className="relative">
                             <span className="absolute left-4.5 top-4"></span>
                             <input
-                              className="w-full rounded border border-stroke bg-gray py-3 pl-11.5 pr-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
+                              className="w-full rounded border border-stroke bg-gray py-3 px-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
                               type="text"
                               id="title"
                               {...register("title", { required: true })}
@@ -139,15 +138,14 @@ const CreateService = () => {
                         <div className="w-full sm:w-1/2">
                           <label
                             className="mb-3 block text-sm font-medium text-black dark:text-white"
-                            htmlFor="password"
+                            htmlFor="category"
                           >
                             Category name
                           </label>
                           <input
                             className="w-full rounded border border-stroke bg-gray py-3 px-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
                             type="text"
-                            id="phoneNumber"
-                            placeholder="password"
+                            id="category"
                             {...register("category", { required: true })}
                           />
                           {errors.category && (
@@ -160,7 +158,7 @@ const CreateService = () => {
                       <div className="mb-5.5">
                         <label
                           className="mb-3 block text-sm font-medium text-black dark:text-white"
-                          htmlFor="bio"
+                          htmlFor="description"
                         >
                           Description
                         </label>
@@ -237,7 +235,7 @@ const CreateService = () => {
                           <div className="relative">
                             <span className="absolute left-4.5 top-4"></span>
                             <input
-                              className="w-full rounded border border-stroke bg-gray py-3 pl-11.5 pr-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
+                              className="w-full rounded border border-stroke bg-gray py-3 px-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
                               type="text"
                               id="serviceDetails.title "
                               {...register("serviceDetails.title", {
@@ -251,29 +249,6 @@ const CreateService = () => {
                             )}
                           </div>
                         </div>
-                        <div className="w-full sm:w-1/2">
-                          <label
-                            className="mb-3 block text-sm font-medium text-black dark:text-white "
-                            htmlFor="bannerimageField"
-                          >
-                            Banner Image
-                          </label>
-                          <input
-                            type="file"
-                            accept="image/*"
-                            {...register("serviceDetails.banner", {
-                              required: true,
-                            })}
-                            className="w-full rounded border border-stroke bg-gray py-3 px-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
-                          />
-                          {errors.serviceDetails?.banner && (
-                            <p className="text-[red] text-sm mt-1">
-                              This Field is required
-                            </p>
-                          )}
-                        </div>
-                      </div>
-                      <div className="mb-5.5 flex flex-col gap-5.5 sm:flex-row">
                         <div className="w-full sm:w-1/2">
                           <label
                             className="mb-3 block text-sm font-medium text-black dark:text-white "
@@ -297,6 +272,8 @@ const CreateService = () => {
                             )}
                           </div>
                         </div>
+                      </div>
+                      <div className="mb-5.5 flex flex-col gap-5.5 sm:flex-row">
                         <div className="w-full sm:w-1/2">
                           <label
                             className="mb-3 block text-sm font-medium text-black dark:text-white "
@@ -320,14 +297,12 @@ const CreateService = () => {
                             )}
                           </div>
                         </div>
-                      </div>
-                      <div className="mb-5.5 flex flex-col gap-5.5 sm:flex-row">
                         <div className="w-full sm:w-1/2">
                           <label
                             className="mb-3 block text-sm font-medium text-black dark:text-white "
                             htmlFor="feature3"
                           >
-                            Service Feature 3
+                            Service Feature 2
                           </label>
                           <div>
                             <input
@@ -345,6 +320,8 @@ const CreateService = () => {
                             )}
                           </div>
                         </div>
+                      </div>
+                      <div className="mb-5.5 flex flex-col gap-5.5 sm:flex-row">
                         <div className="w-full sm:w-1/2">
                           <label
                             className="mb-3 block text-sm font-medium text-black dark:text-white "
@@ -362,6 +339,29 @@ const CreateService = () => {
                               })}
                             />
                             {errors.serviceDetails?.feature4 && (
+                              <p className="text-[red] text-sm mt-1">
+                                This Field is required
+                              </p>
+                            )}
+                          </div>
+                        </div>
+                        <div className="w-full sm:w-1/2">
+                          <label
+                            className="mb-3 block text-sm font-medium text-black dark:text-white "
+                            htmlFor="feature5"
+                          >
+                            Service Feature 5
+                          </label>
+                          <div>
+                            <input
+                              className="w-full rounded border border-stroke bg-gray py-3 px-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
+                              type="text"
+                              id="feature5"
+                              {...register("serviceDetails.feature5", {
+                                required: true,
+                              })}
+                            />
+                            {errors.serviceDetails?.feature5 && (
                               <p className="text-[red] text-sm mt-1">
                                 This Field is required
                               </p>

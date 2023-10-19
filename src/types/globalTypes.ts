@@ -42,16 +42,10 @@ export type ISingleUserProfile = {
   address: string;
   image: string;
   bio: string;
+  role:string;
 };
 export type IDProps = {
   params: any;
-};
-type IDetailsService = {
-  banner: string;
-  title: string;
-  description: string;
-  images: [string];
-  servicePoint: [string];
 };
 export type IServices = {
   id: string;
@@ -98,3 +92,5 @@ export type ICreateAdmin = {
     bio: string;
   };
 };
+
+

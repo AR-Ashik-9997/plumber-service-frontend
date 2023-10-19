@@ -9,10 +9,12 @@ import { EyeFilledIcon } from "../InputHelper/EyeFilledIcon";
 import { FormData } from "@/types/globalTypes";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+import Swal from "sweetalert2";
 const RegistrationPage = () => {
   const router = useRouter();
   const [Error, setError] = useState<string>();
   const [isVisible, setIsVisible] = useState<Boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
   const toggleVisibility = () => setIsVisible(!isVisible);
   const {
     register,
@@ -22,11 +24,7 @@ const RegistrationPage = () => {
     formState: { errors },
   } = useForm<FormData>();
   const onSubmit: SubmitHandler<FormData> = async (data: FormData) => {
-    const option = {
-      name: data.username,
-      email: data.email,
-      password: data.password,
-    };
+    setLoading(true);
     await axios
       .post(`${process.env.DB_HOST}/auth/signup`, {
         name: data.username,
@@ -37,6 +35,8 @@ const RegistrationPage = () => {
         if (response) {
           reset();
           setError("");
+          setLoading(false);
+          Swal.fire("Good job!", `${response?.data?.message}`, "success");
           router.push("/login");
         }
       })
@@ -50,7 +50,14 @@ const RegistrationPage = () => {
     <section>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
         <div className="flex items-center justify-center">
-          <Image className=" w-full p-4" src='https://i.ibb.co/brpnQQP/auth.png' width={500} height={500} layout="responsive" alt="Card" />
+          <Image
+            className=" w-full p-4"
+            src="https://i.ibb.co/brpnQQP/auth.png"
+            width={500}
+            height={500}
+            layout="responsive"
+            alt="Card"
+          />
         </div>
         <div className="min-h-screen bg-gradient-to-r from-[#00bcd4] to-indigo-500 flex flex-col justify-center sm:px-6 lg:px-8 p-4">
           <div className="sm:mx-auto sm:w-full sm:max-w-md">
@@ -134,23 +141,32 @@ const RegistrationPage = () => {
                     </p>
                   )}
                 </div>
-                <div className="flex justify-center items-center mt-4">
-                  <Button
-                    className="w-1/2 active:scale-95 duration-200 text-lg hover:bg-[#E83A15] hover:text-white text-black-2"
-                    
-                    type="submit"
-                  >
-                    Register
-                  </Button>
+                <div className="flex justify-end gap-4.5">
+                  {!loading ? (
+                    <Button
+                      color="primary"
+                      radius="none"
+                      className="w-1/2 active:scale-95 duration-200 text-lg"
+                      type="submit"
+                    >
+                      Create Admin
+                    </Button>
+                  ) : (
+                    <Button
+                      isLoading
+                      className="w-1/2  text-lg bg-[#E83A15] text-white opacity-90"
+                      type="submit"
+                    >
+                      Loding
+                    </Button>
+                  )}
                 </div>
               </form>
               <div className="flex flex-col items-center justify-center mt-6">
                 <hr className="w-3/4 border-1 border-black" />
                 <div className="mt-4">
                   <Link href={"/login"}>
-                    <Button
-                      className="active:scale-95 duration-200 text-lg  bg-[#1d4777] text-white"
-                    >
+                    <Button className="active:scale-95 duration-200 text-lg  bg-[#1d4777] text-white">
                       Login
                     </Button>
                   </Link>

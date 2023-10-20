@@ -5,94 +5,15 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { useRouter } from "next/navigation";
 import { Autoplay } from "swiper/modules";
+import { useGetAllServicesQuery } from "@/redux/api/serviceApi";
+import { ICardServices } from "@/types/globalTypes";
 
-const cardData = [
-  {
-    image: "https://i.ibb.co/6yzs1cY/test.png",
-    title: "Card Title",
-    description:
-      " This is a sample card description. You can replace it with your own      content",
-    link: "/serviceDetailse",
-  },
-  {
-    image: "https://i.ibb.co/6yzs1cY/test.png",
-    title: "Card Title",
-    description:
-      " This is a sample card description. You can replace it with your own      content",
-    link: "/serviceDetailse",
-  },
-  {
-    image: "https://i.ibb.co/6yzs1cY/test.png",
-    title: "Card Title",
-    description:
-      " This is a sample card description. You can replace it with your own      content",
-    link: "/serviceDetailse",
-  },
-  {
-    image: "https://i.ibb.co/6yzs1cY/test.png",
-    title: "Card Title",
-    description:
-      " This is a sample card description. You can replace it with your own      content",
-    link: "/serviceDetailse",
-  },
-  {
-    image: "https://i.ibb.co/6yzs1cY/test.png",
-    title: "Card Title",
-    description:
-      " This is a sample card description. You can replace it with your own      content",
-    link: "/serviceDetailse",
-  },
-  {
-    image: "https://i.ibb.co/6yzs1cY/test.png",
-    title: "Card Title",
-    description:
-      " This is a sample card description. You can replace it with your own      content",
-    link: "/serviceDetailse",
-  },
-  {
-    image: "https://i.ibb.co/6yzs1cY/test.png",
-    title: "Card Title",
-    description:
-      " This is a sample card description. You can replace it with your own      content",
-    link: "/serviceDetailse",
-  },
-  {
-    image: "https://i.ibb.co/6yzs1cY/test.png",
-    title: "Card Title",
-    description:
-      " This is a sample card description. You can replace it with your own      content",
-    link: "/serviceDetailse",
-  },
-  {
-    image: "https://i.ibb.co/6yzs1cY/test.png",
-    title: "Card Title",
-    description:
-      " This is a sample card description. You can replace it with your own      content",
-    link: "/serviceDetailse",
-  },
-  {
-    image: "https://i.ibb.co/6yzs1cY/test.png",
-    title: "Card Title",
-    description:
-      " This is a sample card description. You can replace it with your own      content",
-    link: "/serviceDetailse",
-  },
-  {
-    image: "https://i.ibb.co/6yzs1cY/test.png",
-    title: "Card Title",
-    description:
-      " This is a sample card description. You can replace it with your own      content",
-    link: "/serviceDetailse",
-  },
-  {
-    image: "https://i.ibb.co/6yzs1cY/test.png",
-    title: "Card Title",
-    description:
-      " This is a sample card description. You can replace it with your own      content",
-    link: "/serviceDetailse",
-  },
-];
 const Services = () => {
+  const { data: ServiceData, isLoading } = useGetAllServicesQuery(undefined, {
+    refetchOnMountOrArgChange: true,
+    pollingInterval: 10000,
+  }); 
+
   const router = useRouter();
   return (
     <section className="py-12 px-4 sm:px-8 md:px-12 lg:px-16 bg-[#f7f7f7]">
@@ -151,15 +72,16 @@ const Services = () => {
           modules={[Autoplay]}
           className="mySwiper"
         >
-          {cardData.map((item, i: number) => (
+          {ServiceData?.map((item: ICardServices, i: number) => (
             <SwiperSlide key={i}>
               <div className="max-w-sm rounded overflow-hidden bg-white shadow-xl">
                 <Image
                   src={item?.image}
                   alt="Card Image"
-                  className="w-48 h-48 object-cover rounded-full border border-black-2 bg-black mx-auto p-4"
+                  className="w-48 h-48 mx-auto p-4 rounded-lg"
                   width={100}
                   height={100}
+                  layout="responsive"
                 />
                 <div className="px-6 py-4 flex flex-col items-center">
                   <div className="font-bold text-xl mb-2">{item?.title}</div>
@@ -169,7 +91,7 @@ const Services = () => {
                 </div>
                 <div className="px-6 mb-8 pt-2 flex justify-center">
                   <Button
-                    onClick={() => router.push(`${item?.link}`)}
+                    onClick={() => router.push(`/serviceDetailse/${item?.id}`)}
                     size="lg"
                     radius="none"
                     className="bg-[#00045F] font-bold py-2 px-4 text-white"

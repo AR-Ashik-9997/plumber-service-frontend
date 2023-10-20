@@ -1,8 +1,17 @@
 "use client";
 import Image from "next/image";
 import style from "../common/Common.module.css";
+import { IDProps, IServiceDetailse } from "@/types/globalTypes";
+import { useGetSingleServiceQuery } from "@/redux/api/serviceApi";
+import { Button } from "@nextui-org/react";
 
-const ServiceDetailsePage = () => {
+const ServiceDetailsePage = ({ params }: IDProps) => {
+  const { id } = params;
+  const { data: serviceData } = useGetSingleServiceQuery(id, {
+    refetchOnMountOrArgChange: true,
+    pollingInterval: 10000,
+  });
+
   return (
     <section>
       <div className={`${style.common_banner}`}>
@@ -12,33 +21,61 @@ const ServiceDetailsePage = () => {
           </h1>
         </div>
       </div>
-      <section className="py-12 px-4 sm:px-8 md:px-12 lg:px-16 bg-[#f7f7f7] border w-full xl:w-3/4 mx-auto ">
-        <div>
-          <Image src="" alt="" />
+      <section className="py-12 px-4 sm:px-8 md:px-12 lg:px-16 w-full xl:w-3/4 mx-auto ">
+        <div className="w-3/4 mx-auto">
+          <Image
+            src={serviceData?.image}
+            alt=""
+            width={500}
+            height={500}
+            layout="responsive"
+          />
         </div>
-        <div>
-          <h1 className="text-xl xl:text-2xl font-bold text-black-2">
-            Lorem ipsum dolor sit amet consectetur.
-          </h1>
-          <p className="text-lg text-black-2">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum
-            soluta voluptatum repellat vero at suscipit quibusdam quae
-            temporibus numquam! At totam doloremque architecto temporibus autem
-            saepe quae, quam maxime nemo, vitae exercitationem tempore! Quae,
-            velit excepturi non eaque dolor ad voluptas iure placeat, soluta est
-            ea alias. Aliquid, impedit dolores.
-          </p>
-        </div>
-        <div className="text-black-2 py-2">
-          <ul className="list-disc">
-            <li>Lorem ipsum dolor sit.</li>
-            <li>Lorem ipsum dolor sit.</li>
-            <li>Lorem ipsum dolor sit.</li>
-            <li>Lorem ipsum dolor sit.</li>
-            <li>Lorem ipsum dolor sit.</li>
-            <li>Lorem ipsum dolor sit.</li>
-          </ul>
-        </div>
+        {serviceData?.ServiceDetails.map(
+          (service: IServiceDetailse, index: number) => (
+            <div key={index}>
+              <div className="py-4">
+                <h1 className="text-xl text-center xl:text-2xl font-bold text-black-2 mb-4">
+                  {service?.title}
+                </h1>
+                <p className="text-lg text-black-2 text-justify">
+                  {service?.description}
+                </p>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="text-black-2 py-2">
+                  <p className="text-xl font-bold mb-4">Key Feature</p>
+                  <ul className="list-inside">
+                    <li>{service?.feature1}</li>
+                    <li>{service?.feature2}</li>
+                    <li>{service?.feature3}</li>
+                    <li>{service?.feature4}</li>
+                    <li>{service?.feature5}</li>
+                  </ul>
+                </div>
+                <div className="text-black-2 py-2">
+                  <p className="text-xl font-bold mb-4">Other Info</p>
+                  <ul className="list-inside">
+                    <li className="text-lg font-bold text-black-2">
+                      price: {serviceData?.price}
+                    </li>
+                    <li className="text-lg font-bold text-black-2">
+                      Category: {serviceData?.category}
+                    </li>
+                  </ul>
+                  <div className="pt-4">
+                    <Button
+                      className="w-1/4 active:scale-95 duration-200 text-lg hover:bg-[#E83A15] hover:text-white text-black-2"
+                      type="submit"
+                    >
+                      Booking
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )
+        )}
       </section>
     </section>
   );

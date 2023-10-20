@@ -16,11 +16,7 @@ const UpdateAllUsers = ({ params }: IDProps) => {
   const { data: userData } = useGetSingleUserQuery(id, {
     refetchOnMountOrArgChange: true,
     pollingInterval: 1000,
-  });
-  console.log(
-    "🚀 ~ file: UpdateAllUsers.tsx:24 ~ UpdateAllUsers ~ userData:",
-    userData
-  );
+  }); 
 
   const [pageLoading, setPageLoading] = useState<boolean>(true);
   const { handleSubmit, reset, control } = useForm<ICreateAdmin>();

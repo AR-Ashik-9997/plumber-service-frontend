@@ -141,15 +141,13 @@ const RegistrationPage = () => {
                     </p>
                   )}
                 </div>
-                <div className="flex justify-end gap-4.5">
+                <div className="flex justify-center items-center mt-4">
                   {!loading ? (
                     <Button
-                      color="primary"
-                      radius="none"
-                      className="w-1/2 active:scale-95 duration-200 text-lg"
+                      className="w-1/2 active:scale-95 duration-200 text-lg hover:bg-[#E83A15] hover:text-white text-black-2"
                       type="submit"
                     >
-                      Create Admin
+                      Registration
                     </Button>
                   ) : (
                     <Button
@@ -157,7 +155,7 @@ const RegistrationPage = () => {
                       className="w-1/2  text-lg bg-[#E83A15] text-white opacity-90"
                       type="submit"
                     >
-                      Loding
+                      Loading
                     </Button>
                   )}
                 </div>

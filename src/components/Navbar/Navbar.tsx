@@ -31,15 +31,7 @@ export default function MainNavbar() {
     removeUserInfo(authKey);
     router.refresh();
   };
-  const menuItems = [
-    "service",
-    "Product",
-    "Bolg",
-    "About Us",
-    "Contact Us",
-    "Dashboard",
-    "Help & Feedback",
-  ];
+  const menuItems = ["service", "About Us", "Contact Us", "Dashboard"];
 
   return (
     <Navbar onMenuOpenChange={setIsMenuOpen} className="py-4">
@@ -50,7 +42,12 @@ export default function MainNavbar() {
         />
         <NavbarBrand>
           <button onClick={() => router.push("/")}>
-            <Image src="https://i.ibb.co/tz1P1XM/logo.png"alt="logo" width={150} height={200} />
+            <Image
+              src="https://i.ibb.co/tz1P1XM/logo.png"
+              alt="logo"
+              width={150}
+              height={200}
+            />
           </button>
         </NavbarBrand>
       </NavbarContent>
@@ -67,7 +64,7 @@ export default function MainNavbar() {
             Service
           </Link>
         </NavbarItem>
-        <NavbarItem>
+        {/* <NavbarItem>
           <Link
             className="text-black-2 font-medium hover:text-[#E83A15]"
             href="#"
@@ -82,7 +79,7 @@ export default function MainNavbar() {
           >
             Bolg
           </Link>
-        </NavbarItem>
+        </NavbarItem> */}
         <NavbarItem>
           <Link
             className="text-black-2 font-medium hover:text-[#E83A15]"

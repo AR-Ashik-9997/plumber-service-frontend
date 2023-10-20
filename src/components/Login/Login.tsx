@@ -111,7 +111,7 @@ const LoginForm = () => {
                       className="w-1/2  text-lg bg-[#E83A15] text-white opacity-90"
                       type="submit"
                     >
-                      Login
+                      Loading
                     </Button>
                   )}
                 </div>

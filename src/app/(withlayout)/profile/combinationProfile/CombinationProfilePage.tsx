@@ -16,7 +16,7 @@ const CombinationProfilePage = () => {
     if (!!data) {
       setChangeUi(true);
     }
-  }, [changeUi]);
+  }, [changeUi, data]);
 
   return (
     <div>{data !== undefined ?  <UpdateProfile />:<CreateProfilePage />}</div>

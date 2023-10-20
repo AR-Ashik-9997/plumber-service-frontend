@@ -16,7 +16,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
       router.push("/login");
     }
     setTimeout(() => setLoading(false), 1000);
-  }, [router, loading]);
+  }, [router, loading, userLoggedIn]);
 
   return (
     <div>

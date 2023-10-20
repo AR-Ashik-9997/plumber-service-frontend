@@ -8,6 +8,6 @@ password: admin00987665
 email: admin@gmail.com
 password: ashik00987665
 
-# Live-Link: https://plimber-service-frontend-ar-ashik-9997.vercel.app/
+# Live-Link: https://plumber-service-frontend-ar-ashik-9997.vercel.app/
 
 # server-Link: https://github.com/AR-Ashik-9997/plumber-service-backend

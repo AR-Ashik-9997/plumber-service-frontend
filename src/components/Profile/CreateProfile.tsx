@@ -23,7 +23,7 @@ const CreateProfilePage = () => {
     formData.append("file", data.image[0]);
     formData.append("data", JSON.stringify(data));
     await axios
-      .post(`${process.env.DB_HOST}/profile`, formData, {
+      .post("https://plumber-service-one.vercel.app/api/v1/profile", formData, {
         headers: {
           Authorization: `${authAccess}`,
           "Content-Type": "multipart/form-data",

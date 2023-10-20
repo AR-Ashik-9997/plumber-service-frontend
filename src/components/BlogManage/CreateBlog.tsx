@@ -26,7 +26,7 @@ const CreateBlogPage = () => {
     formData.append("file", data.image[0]);
     formData.append("data", JSON.stringify(data));
     await axios
-      .post(`${process.env.DB_HOST}/blogs`, formData, {
+      .post(`https://plumber-service-one.vercel.app/api/v1/blogs`, formData, {
         headers: {
           Authorization: `${authAccess}`,
           "Content-Type": "multipart/form-data",

@@ -25,7 +25,7 @@ const CreateService = () => {
     formData.append("file", data.image[0]);
     formData.append("data", JSON.stringify(data));
     await axios
-      .post(`${process.env.DB_HOST}/services`, formData, {
+      .post("https://plumber-service-one.vercel.app/api/v1/services", formData, {
         headers: {
           Authorization: `${authAccess}`,
           "Content-Type": "multipart/form-data",

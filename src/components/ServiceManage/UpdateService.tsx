@@ -26,7 +26,7 @@ const UpdateService = ({ params }: IDProps) => {
     formData.append("file", data.image);    
     formData.append("data", JSON.stringify(data));
     await axios
-      .patch(`${process.env.DB_HOST}/services/${id}`, formData, {
+      .patch(`https://plumber-service-one.vercel.app/api/v1/services/${id}`, formData, {
         headers: {
           Authorization: `${authAccess}`,
           "Content-Type": "multipart/form-data",

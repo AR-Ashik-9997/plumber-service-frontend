@@ -26,7 +26,7 @@ const RegistrationPage = () => {
   const onSubmit: SubmitHandler<FormData> = async (data: FormData) => {
     setLoading(true);
     await axios
-      .post(`${process.env.DB_HOST}/auth/signup`, {
+      .post("https://plumber-service-one.vercel.app/api/v1/auth/signup", {
         name: data.username,
         email: data.email,
         password: data.password,

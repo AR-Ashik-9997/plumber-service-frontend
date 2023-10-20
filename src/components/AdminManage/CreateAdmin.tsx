@@ -26,7 +26,7 @@ const CreateAdminPage = () => {
     formData.append("file", data.profile.image[0]);
     formData.append("data", JSON.stringify(data));
     await axios
-      .post(`${process.env.DB_HOST}/user/create/admin`, formData, {
+      .post(`https://plumber-service-one.vercel.app/api/v1/user/create/admin`, formData, {
         headers: {
           Authorization: `${authAccess}`,
           "Content-Type": "multipart/form-data",

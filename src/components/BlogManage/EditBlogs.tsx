@@ -28,7 +28,7 @@ const EditBlogs = ({ params }: IDProps) => {
     formData.append("file", data.image);
     formData.append("data", JSON.stringify(data));
     await axios
-      .patch(`${process.env.DB_HOST}/blogs/${id}`, formData, {
+      .patch(`https://plumber-service-one.vercel.app/api/v1/blogs/${id}`, formData, {
         headers: {
           Authorization: `${authAccess}`,
           "Content-Type": "multipart/form-data",

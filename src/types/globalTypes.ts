@@ -107,3 +107,11 @@ export type IServiceDetailse = {
   feature4: string;
   feature5: string;
 };
+
+export type IBlogs = {
+  id:string;
+  username: string;
+  title: string;
+  image: string;
+  blog: string;
+};

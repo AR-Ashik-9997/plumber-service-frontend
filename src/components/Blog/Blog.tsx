@@ -5,30 +5,16 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { useRouter } from "next/navigation";
 import { Autoplay } from "swiper/modules";
+import { useGetAllBlogsQuery } from "@/redux/api/blogApi";
+import { IBlogs } from "@/types/globalTypes";
 
-const blogData = [
-  {
-    image: "https://i.ibb.co/6yzs1cY/test.png",
-    title: "We’ll make your old kitchen Look brand new.",
-    link: "#",
-  },
-  {
-    image: "https://i.ibb.co/6yzs1cY/test.png",
-    title: "We’ll make your old kitchen Look brand new.",
-    link: "#",
-  },
-  {
-    image: "https://i.ibb.co/6yzs1cY/test.png",
-    title: "We’ll make your old kitchen Look brand new.",
-    link: "#",
-  },
-  {
-    image: "https://i.ibb.co/6yzs1cY/test.png",
-    title: "We’ll make your old kitchen Look brand new.",
-    link: "#",
-  },
-];
+
 const Blog = () => {
+  const { data:BlogDara } = useGetAllBlogsQuery(undefined, {
+    refetchOnMountOrArgChange: true,
+    pollingInterval: 10000,
+  });
+  console.log(BlogDara)
   const router = useRouter();
   return (
     <section className="py-12 px-4 sm:px-8 md:px-12 lg:px-16">
@@ -70,7 +56,7 @@ const Blog = () => {
           modules={[Autoplay]}
           className="mySwiper"
         >
-          {blogData.map((item, i: number) => (
+          {BlogDara?.map((item:IBlogs, i: number) => (
             <SwiperSlide key={i}>
               <div className="max-w-sm rounded overflow-hidden bg-white shadow-2xl">
                 <Image
@@ -79,6 +65,7 @@ const Blog = () => {
                   className="w-full object-cover  mx-auto p-4"
                   width={100}
                   height={100}
+                  layout="responsive"
                 />
                 <div className="px-6 py-4">
                   <div className="font-bold text-xl xl:text-2xl text-black-2 mb-2">
@@ -87,7 +74,7 @@ const Blog = () => {
                 </div>
                 <div className="px-6 mb-8 pt-2">
                   <Button
-                    onClick={() => router.push(`${item?.link}`)}
+                    onClick={() => router.push(`/blogDetailse/${item?.id}`)}
                     size="lg"
                     radius="none"
                     className="bg-[#E83A15] font-bold py-2 px-4 text-white"

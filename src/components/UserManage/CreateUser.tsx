@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { authAccess } from "@/services/auth_service";
 import Image from "next/image";
 import axios from "axios";
-import { Button } from "@nextui-org/react";
+import { Button, Select, SelectItem } from "@nextui-org/react";
 import Swal from "sweetalert2";
 import Loader from "../common/Loader";
 
@@ -26,7 +26,7 @@ const CreateUserPage = () => {
     formData.append("file", data.profile.image[0]);
     formData.append("data", JSON.stringify(data));
     await axios
-      .post(`https://plumber-service-one.vercel.app/api/v1/user`, formData, {
+      .post(`${process.env.NEXT_PUBLIC_BACKEND_API}/api/v1/user`, formData, {
         headers: {
           Authorization: `${authAccess}`,
           "Content-Type": "multipart/form-data",
@@ -190,8 +190,9 @@ const CreateUserPage = () => {
                         )}
                       </div>
                     </div>
-                    <div className="mb-5.5">
-                      <label
+                    <div className="mb-5.5 flex flex-col gap-5.5 sm:flex-row">
+                    <div className="w-full sm:w-1/2">
+                    <label
                         className="mb-3 block text-sm font-medium text-black dark:text-white"
                         htmlFor="Address"
                       >
@@ -209,7 +210,34 @@ const CreateUserPage = () => {
                           This Field is required
                         </p>
                       )}
-                    </div>
+
+                      </div>
+                      <div className="w-full sm:w-1/2">
+                        <label
+                          className="mb-3 block text-sm font-medium text-black dark:text-white"
+                          htmlFor="Address"
+                        >
+                          Role
+                        </label>
+                        <Select
+                          label="Select Role"
+                          className="max-w-xs"
+                          {...register("role", { required: true })}
+                        >
+                          <SelectItem key="admin" value="admin">
+                            Admin
+                          </SelectItem>
+                          <SelectItem key="user" value="user">
+                            User
+                          </SelectItem>                          
+                        </Select>
+                        {errors.role && (
+                          <p className="text-[red] text-sm mt-1">
+                            This Field is required
+                          </p>
+                        )}
+                      </div>
+                    </div>                  
 
                     <div className="mb-5.5">
                       <label

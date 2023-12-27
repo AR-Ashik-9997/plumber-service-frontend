@@ -28,6 +28,7 @@ export type ICreateUser = {
     image: string;
     bio: string;
   };
+  role:string
 };
 
 export type IAllUser = {

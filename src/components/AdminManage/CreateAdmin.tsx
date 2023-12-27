@@ -26,12 +26,16 @@ const CreateAdminPage = () => {
     formData.append("file", data.profile.image[0]);
     formData.append("data", JSON.stringify(data));
     await axios
-      .post(`https://plumber-service-one.vercel.app/api/v1/user/create/admin`, formData, {
-        headers: {
-          Authorization: `${authAccess}`,
-          "Content-Type": "multipart/form-data",
-        },
-      })
+      .post(
+        `${process.env.NEXT_PUBLIC_BACKEND_API}/api/v1/user/create/admin`,
+        formData,
+        {
+          headers: {
+            Authorization: `${authAccess}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      )
       .then((res) => {
         if (!!res?.data.success) {
           setLoading(false);

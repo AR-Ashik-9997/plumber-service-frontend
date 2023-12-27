@@ -32,7 +32,7 @@ const reviewData = [
 const Testimonial = () => {
   return (
     <section className="py-12 px-4 sm:px-8 md:px-12 lg:px-16">
-      <div className="text-black-2 font-bold text-center">
+      <div className="text-black-2 font-bold text-center ">
         <div className="mb-4 flex justify-center items-center gap-4">
           <Image
             src="https://i.ibb.co/VqhCC6t/title-shape-1.png"

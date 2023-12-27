@@ -6,7 +6,7 @@ import React, { useEffect, useState } from "react";
 import { authAccess } from "@/services/auth_service";
 import Image from "next/image";
 import axios from "axios";
-import { Button } from "@nextui-org/react";
+import { Button, Select, SelectItem } from "@nextui-org/react";
 import Swal from "sweetalert2";
 import { useGetSingleUserQuery } from "@/redux/api/userApi";
 import Loader from "@/components/common/Loader";
@@ -27,12 +27,16 @@ const UpdateUser = ({ params }: IDProps) => {
     formData.append("file", data.profile.image);
     formData.append("data", JSON.stringify(data));
     await axios
-      .patch(`https://plumber-service-one.vercel.app/api/v1/user/${id}`, formData, {
-        headers: {
-          Authorization: `${authAccess}`,
-          "Content-Type": "multipart/form-data",
-        },
-      })
+      .patch(
+        `${process.env.NEXT_PUBLIC_BACKEND_API}/api/v1/user/${id}`,
+        formData,
+        {
+          headers: {
+            Authorization: `${authAccess}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      )
       .then((res) => {
         if (!!res?.data.success) {
           setLoading(false);
@@ -188,6 +192,34 @@ const UpdateUser = ({ params }: IDProps) => {
                               />
                             </div>
                           </div>
+                          <div className="w-full sm:w-1/2 mb-5.5">
+                            <label
+                              className="mb-3 block text-sm font-medium text-black dark:text-white"
+                              htmlFor="Address"
+                            >
+                              Role
+                            </label>
+                            <Controller
+                              name="role"
+                              control={control}
+                              render={({ field }) => (
+                                <Select
+                                  label="Select Role"
+                                  placeholder="Select an animal"
+                                  defaultSelectedKeys={[`${userData.role}`]}
+                                  className="max-w-xs"
+                                  {...field}
+                                >
+                                  <SelectItem key="admin" value="admin">
+                                    Admin
+                                  </SelectItem>
+                                  <SelectItem key="user" value="user">
+                                    User
+                                  </SelectItem>
+                                </Select>
+                              )}
+                            />
+                          </div>
 
                           <div className="mb-5.5">
                             <label
@@ -271,7 +303,7 @@ const UpdateUser = ({ params }: IDProps) => {
                         alt="a"
                         width={150}
                         height={150}
-                        className="rounded-full border mx-auto"
+                        layout="responsive"
                       />
                     </div>
                     <div

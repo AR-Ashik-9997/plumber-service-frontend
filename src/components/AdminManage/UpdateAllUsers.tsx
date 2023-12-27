@@ -16,7 +16,7 @@ const UpdateAllUsers = ({ params }: IDProps) => {
   const { data: userData } = useGetSingleUserQuery(id, {
     refetchOnMountOrArgChange: true,
     pollingInterval: 1000,
-  }); 
+  });
 
   const [pageLoading, setPageLoading] = useState<boolean>(true);
   const { handleSubmit, reset, control } = useForm<ICreateAdmin>();
@@ -28,12 +28,16 @@ const UpdateAllUsers = ({ params }: IDProps) => {
     formData.append("file", data.profile.image);
     formData.append("data", JSON.stringify(data));
     await axios
-      .patch(`https://plumber-service-one.vercel.app/api/v1/user/${id}`, formData, {
-        headers: {
-          Authorization: `${authAccess}`,
-          "Content-Type": "multipart/form-data",
-        },
-      })
+      .patch(
+        `${process.env.NNEXT_PUBLIC_BACKEND_API}/api/v1/user/${id}`,
+        formData,
+        {
+          headers: {
+            Authorization: `${authAccess}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      )
       .then((res) => {
         if (!!res?.data.success) {
           setLoading(false);
@@ -202,13 +206,14 @@ const UpdateAllUsers = ({ params }: IDProps) => {
                               render={({ field }) => (
                                 <Select
                                   label="Select Role"
+                                  placeholder="Select an animal"
+                                  defaultSelectedKeys={[`${userData.role}`]}
                                   className="max-w-xs"
                                   {...field}
                                 >
-                                  <SelectItem
-                                    key="admin"
-                                    value="admin"
-                                  ></SelectItem>
+                                  <SelectItem key="admin" value="admin">
+                                    Admin
+                                  </SelectItem>
                                   <SelectItem key="user" value="user">
                                     User
                                   </SelectItem>
@@ -298,13 +303,13 @@ const UpdateAllUsers = ({ params }: IDProps) => {
                     </h3>
                   </div>
                   <div className="p-7">
-                    <div className="pb-2">
+                    <div className="pb-2 ">
                       <Image
                         src={userData?.Profile[0]?.image}
                         alt="a"
-                        width={150}
-                        height={150}
-                        className="rounded-full border mx-auto"
+                        width={50}
+                        height={50}
+                        layout="responsive"                        
                       />
                     </div>
                     <div

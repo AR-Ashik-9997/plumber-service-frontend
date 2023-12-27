@@ -23,7 +23,7 @@ const TeamData = [
 ];
 const TeamMember = () => {
   return (
-    <div>
+    <div className="py-20 md:py-12 px-4 sm:px-8 md:px-12 lg:px-16">
       <section className={`${style.team_banner}`}>
         <div className="w-full bg-black bg-opacity-90 border h-auto md:h-full lg:h-auto xl:h-full">
           <div className="text-white font-bold text-center py-8">

@@ -28,7 +28,7 @@ export type ICreateUser = {
     image: string;
     bio: string;
   };
-  role:string
+  role: string;
 };
 
 export type IAllUser = {
@@ -55,24 +55,10 @@ export type IServices = {
   image: string;
   price: string;
   category: string;
-  serviceDetails: {
-    title: string;
-    description: string;
-    feature1: string;
-    feature2: string;
-    feature3: string;
-    feature4: string;
-    feature5: string;
-  };
-};
-export type IGetServiceDetails = {
-  title: string;
-  description: string;
   feature1: string;
   feature2: string;
   feature3: string;
   feature4: string;
-  feature5: string;
 };
 export type IGetService = {
   id: string;
@@ -110,7 +96,7 @@ export type IServiceDetailse = {
 };
 
 export type IBlogs = {
-  id:string;
+  id: string;
   username: string;
   title: string;
   image: string;

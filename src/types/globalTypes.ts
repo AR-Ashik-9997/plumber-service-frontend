@@ -17,6 +17,10 @@ export type IProfile = {
   image: string;
   bio: string;
 };
+export type IPasswordChange = {
+  oldpassword: string;
+  newpassword: string;
+};
 
 export type ICreateUser = {
   name: string;

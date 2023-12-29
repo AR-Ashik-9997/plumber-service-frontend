@@ -215,7 +215,7 @@ const UpdateProfile = () => {
                       alt={userData?.username}
                       width={180}
                       height={180}
-                      className="rounded-full border mx-auto p-4"
+                      layout="responsive"
                     />
                   </div>
                   <div

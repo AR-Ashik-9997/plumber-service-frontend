@@ -77,7 +77,7 @@ const ViewBlogs = () => {
                         <div className="flex items-center space-x-3.5">
                           <Link
                             className="hover:text-primary"
-                            href={`/admin/blogmanage/editBlogs/${item?.id}`}
+                            href={`/admin/contentmanage/blogmanage/editBlogs/${item?.id}`}
                           >
                             <svg
                               className="fill-current"

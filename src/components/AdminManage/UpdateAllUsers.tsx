@@ -25,7 +25,7 @@ const UpdateAllUsers = ({ params }: IDProps) => {
   const onSubmit: SubmitHandler<ICreateAdmin> = async (data: ICreateAdmin) => {
     setLoading(true);
     const formData = new FormData();
-    formData.append("file", data.profile.image);
+    formData.append("profile", data.profile.image);
     formData.append("data", JSON.stringify(data));
     await axios
       .patch(

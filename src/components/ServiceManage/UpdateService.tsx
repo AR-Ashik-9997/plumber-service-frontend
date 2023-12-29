@@ -25,7 +25,7 @@ const UpdateService = ({ params }: IDProps) => {
   const onSubmit: SubmitHandler<IServices> = async (data: IServices) => {
     setLoading(true);
     const formData = new FormData();
-    formData.append("file", data.image);
+    formData.append("service", data.image);
     formData.append("data", JSON.stringify(data));
     await axios
       .patch(

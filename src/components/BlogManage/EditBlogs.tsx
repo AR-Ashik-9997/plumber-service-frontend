@@ -17,7 +17,6 @@ const EditBlogs = ({ params }: IDProps) => {
     refetchOnMountOrArgChange: true,
     pollingInterval: 1000,
   });
-  console.log(blog);
   const [pageLoading, setPageLoading] = useState<boolean>(true);
   const { handleSubmit, reset, control } = useForm<IBlogs>();
   const [loading, setLoading] = useState<boolean>(false);
@@ -25,15 +24,19 @@ const EditBlogs = ({ params }: IDProps) => {
   const onSubmit: SubmitHandler<IBlogs> = async (data: IBlogs) => {
     setLoading(true);
     const formData = new FormData();
-    formData.append("file", data.image);
+    formData.append("blog", data.image);
     formData.append("data", JSON.stringify(data));
     await axios
-      .patch(`https://plumber-service-one.vercel.app/api/v1/blogs/${id}`, formData, {
-        headers: {
-          Authorization: `${authAccess}`,
-          "Content-Type": "multipart/form-data",
-        },
-      })
+      .patch(
+        `${process.env.NEXT_PUBLIC_BACKEND_API}/api/v1/blogs/${id}`,
+        formData,
+        {
+          headers: {
+            Authorization: `${authAccess}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      )
       .then((res) => {
         if (!!res?.data.success) {
           setLoading(false);
@@ -52,7 +55,7 @@ const EditBlogs = ({ params }: IDProps) => {
         <Loader />
       ) : (
         <div className="mx-auto max-w-270">
-          <Breadcrumb pageName="Edit User" />
+          <Breadcrumb pageName="Edit Blog" />
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="grid grid-cols-9 gap-8">
               <div className="col-span-9 xl:col-span-6">
@@ -212,7 +215,7 @@ const EditBlogs = ({ params }: IDProps) => {
                         alt="a"
                         width={150}
                         height={150}
-                        className="rounded-full border mx-auto"
+                        layout="responsive"
                       />
                     </div>
                     <div

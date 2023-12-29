@@ -22,7 +22,7 @@ const CreateService = () => {
   const onSubmit: SubmitHandler<IServices> = async (data: IServices) => {
     setLoading(true);
     const formData = new FormData();
-    formData.append("file", data.image[0]);
+    formData.append("service", data.image[0]);
     formData.append("data", JSON.stringify(data));
     await axios
       .post(

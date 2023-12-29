@@ -23,7 +23,7 @@ const CreateUserPage = () => {
   const onSubmit: SubmitHandler<ICreateUser> = async (data: ICreateUser) => {
     setLoading(true);
     const formData = new FormData();
-    formData.append("file", data.profile.image[0]);
+    formData.append("profile", data.profile.image[0]);
     formData.append("data", JSON.stringify(data));
     await axios
       .post(`${process.env.NEXT_PUBLIC_BACKEND_API}/api/v1/user`, formData, {

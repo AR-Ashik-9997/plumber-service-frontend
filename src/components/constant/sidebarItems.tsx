@@ -161,7 +161,7 @@ const RoleBasedList = ({ role }: { role: string }) => {
             );
           }}
         </SidebarLinkGroup>
-        {/* <SidebarLinkGroup
+        <SidebarLinkGroup
           activeCondition={pathname === "/" || pathname.includes("Booking")}
         >
           {(handleClick, open) => {
@@ -235,7 +235,7 @@ const RoleBasedList = ({ role }: { role: string }) => {
               </React.Fragment>
             );
           }}
-        </SidebarLinkGroup> */}
+        </SidebarLinkGroup>
         <SidebarLinkGroup
           activeCondition={pathname === "/" || pathname.includes("Content")}
         >
@@ -301,7 +301,7 @@ const RoleBasedList = ({ role }: { role: string }) => {
                     </li>
                     <li>
                       <Link
-                        href="/"
+                        href="/admin/faqmanage/updatefaq"
                         className={`group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ${
                           pathname === "/" && "text-white"
                         } `}
@@ -452,7 +452,7 @@ const RoleBasedList = ({ role }: { role: string }) => {
   const userSidebarItems = () => {
     return (
       <React.Fragment>
-        {/* <li>
+        <li>
           <Link
             href="#"
             className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
@@ -505,7 +505,7 @@ const RoleBasedList = ({ role }: { role: string }) => {
             </svg>
             Order History
           </Link>
-        </li> */}
+        </li>
         <li>
           <Link
             href="/profile"

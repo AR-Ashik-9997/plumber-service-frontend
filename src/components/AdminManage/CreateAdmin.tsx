@@ -23,7 +23,7 @@ const CreateAdminPage = () => {
   const onSubmit: SubmitHandler<ICreateAdmin> = async (data: ICreateAdmin) => {
     setLoading(true);
     const formData = new FormData();
-    formData.append("file", data.profile.image[0]);
+    formData.append("profile", data.profile.image[0]);
     formData.append("data", JSON.stringify(data));
     await axios
       .post(

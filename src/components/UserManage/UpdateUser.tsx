@@ -24,7 +24,7 @@ const UpdateUser = ({ params }: IDProps) => {
   const onSubmit: SubmitHandler<ICreateUser> = async (data: ICreateUser) => {
     setLoading(true);
     const formData = new FormData();
-    formData.append("file", data.profile.image);
+    formData.append("profile", data.profile.image);
     formData.append("data", JSON.stringify(data));
     await axios
       .patch(

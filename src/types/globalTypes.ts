@@ -60,6 +60,22 @@ export type IServices = {
   feature3: string;
   feature4: string;
 };
+export type IFaqs = {
+  id: string;
+  title1: string;
+  description1: string;
+  title2: string;
+  description2: string;
+  title3: string;
+  description3: string;
+  title4: string;
+  description4: string;
+  title5: string;
+  description5: string;
+  title6: string;
+  description6: string;
+};
+
 export type IGetService = {
   id: string;
   title: string;

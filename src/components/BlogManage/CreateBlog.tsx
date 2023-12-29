@@ -23,10 +23,10 @@ const CreateBlogPage = () => {
   const onSubmit: SubmitHandler<IBlogs> = async (data: IBlogs) => {
     setLoading(true);
     const formData = new FormData();
-    formData.append("file", data.image[0]);
+    formData.append("blog", data.image[0]);
     formData.append("data", JSON.stringify(data));
     await axios
-      .post(`https://plumber-service-one.vercel.app/api/v1/blogs`, formData, {
+      .post(`${process.env.NEXT_PUBLIC_BACKEND_API}/api/v1/blogs`, formData, {
         headers: {
           Authorization: `${authAccess}`,
           "Content-Type": "multipart/form-data",

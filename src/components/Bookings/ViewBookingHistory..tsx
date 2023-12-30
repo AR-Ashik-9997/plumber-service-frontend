@@ -1,24 +1,23 @@
 "use client";
 import Loader from "../common/Loader";
-import { IGetService } from "@/types/globalTypes";
 import Link from "next/link";
 import Breadcrumb from "../Breadcrumbs/Breadcrumb";
+import { FcCancel } from "react-icons/fc";
+import { CiEdit } from "react-icons/ci";
+import { IGetAllBookings } from "@/types/globalTypes";
+import {
+  useCancelBookingMutation,
+  useGetAllBookingsQuery,
+} from "@/redux/api/bookingApi";
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
-import {
-  useDeleteServiceMutation,
-  useGetAllServicesQuery,
-} from "@/redux/api/serviceApi";
-import { CiEdit } from "react-icons/ci";
-import { FcCancel } from "react-icons/fc";
 
-const ViewServices = () => {
-  const { data, isLoading } = useGetAllServicesQuery(undefined, {
+const ViewBookingHistory = () => {
+  const { data: BookingData, isLoading } = useGetAllBookingsQuery(undefined, {
     refetchOnMountOrArgChange: true,
     pollingInterval: 10000,
   });
-
-  const [DeleteService] = useDeleteServiceMutation();
+  const [DeleteService] = useCancelBookingMutation();
   const router = useRouter();
   const handleDelete = (id: string) => {
     Swal.fire({
@@ -28,11 +27,11 @@ const ViewServices = () => {
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonText: "Yes, Cancel it!",
     }).then((result) => {
       if (result.isConfirmed) {
         DeleteService(id).then(() => {
-          Swal.fire("Deleted!", "Your file has been deleted.", "success"),
+          Swal.fire("Cancel!", "Your Booking has been Canceled.", "success"),
             router.refresh();
         });
       }
@@ -44,23 +43,23 @@ const ViewServices = () => {
         <Loader />
       ) : (
         <section>
-          <Breadcrumb pageName="All Services" />
+          <Breadcrumb pageName="All Bookings" />
           <div className="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
             <div className="max-w-full overflow-x-auto">
               <table className="w-full table-auto">
                 <thead>
                   <tr className="bg-gray-2 text-left dark:bg-meta-4">
-                    <th className="min-w-[220px] py-4 px-4 font-medium text-black dark:text-white pl-9 xl:pl-11">
-                      Servce Name
+                    <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
+                      Service Name
                     </th>
-                    <th className="min-w-[150px] py-4 font-medium text-black dark:text-white">
-                      Amount
+                    <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">
+                      Booking Date
                     </th>
-                    <th className="min-w-[120px] py-4  font-medium text-black dark:text-white">
-                      Category
+                    <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">
+                      Booking Time
                     </th>
-                    <th className="min-w-[120px] py-4  font-medium text-black dark:text-white">
-                      Availability
+                    <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">
+                      Status
                     </th>
                     <th className="py-4 px-4 font-medium text-black dark:text-white">
                       Actions
@@ -68,39 +67,41 @@ const ViewServices = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {data.map((item: IGetService, index: number) => (
+                  {BookingData?.map((item: IGetAllBookings, index: number) => (
                     <tr key={index}>
-                      <td className="border-b border-[#eee] py-5 px-4 pl-9 dark:border-strokedark xl:pl-11">
-                        <h5 className="font-medium text-black dark:text-white">
-                          {item?.title}
-                        </h5>
-                      </td>
                       <td className="border-b border-[#eee] py-5 dark:border-strokedark">
                         <p
                           className={`inline-flex rounded-full  py-1  text-md font-medium`}
                         >
-                          {item.price}
+                          {item?.service?.title}
                         </p>
                       </td>
                       <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                         <p
                           className={`inline-flex rounded-full  py-1  text-md font-medium`}
                         >
-                          {item.category}
+                          {item?.date}
                         </p>
                       </td>
                       <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                         <p
                           className={`inline-flex rounded-full  py-1  text-md font-medium`}
                         >
-                          {item.availability}
+                          {item?.time}
+                        </p>
+                      </td>
+                      <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                        <p
+                          className={`inline-flex rounded-full  py-1  text-md font-medium`}
+                        >
+                          {item?.status}
                         </p>
                       </td>
                       <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                         <div className="flex items-center space-x-3.5">
                           <Link
                             className="hover:text-primary text-2xl"
-                            href={`/admin/servicemanage/updateService/${item?.id}`}
+                            href={`/user/updateBooking/${item?.id}`}
                           >
                             <CiEdit />
                           </Link>
@@ -124,4 +125,4 @@ const ViewServices = () => {
   );
 };
 
-export default ViewServices;
+export default ViewBookingHistory;

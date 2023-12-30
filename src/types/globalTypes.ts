@@ -42,7 +42,7 @@ export type IAllUser = {
   role: string;
 };
 
-export type IAllBookingsForAdmin = {
+export type IGetAllBookings = {
   id: string;
   user: {
     name: string;

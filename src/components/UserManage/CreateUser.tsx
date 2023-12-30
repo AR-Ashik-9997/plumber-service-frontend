@@ -108,7 +108,7 @@ const CreateUserPage = () => {
                             placeholder="Name"
                             {...register("name", { required: true })}
                           />
-                          {errors.name && (
+                          {errors?.name && (
                             <p className="text-[red] text-sm mt-1">
                               This Field is required
                             </p>
@@ -137,7 +137,7 @@ const CreateUserPage = () => {
                             },
                           })}
                         />
-                        {errors.email && (
+                        {errors?.email && (
                           <p className="text-[red] text-sm mt-1">
                             This Field is required
                           </p>
@@ -162,7 +162,7 @@ const CreateUserPage = () => {
                               required: true,
                             })}
                           />
-                          {errors.profile?.contactNo && (
+                          {errors?.profile?.contactNo && (
                             <p className="text-[red] text-sm mt-1">
                               This Field is required
                             </p>
@@ -183,7 +183,7 @@ const CreateUserPage = () => {
                           placeholder="password"
                           {...register("password", { required: true })}
                         />
-                        {errors.password && (
+                        {errors?.password && (
                           <p className="text-[red] text-sm mt-1">
                             This Field is required
                           </p>
@@ -191,26 +191,25 @@ const CreateUserPage = () => {
                       </div>
                     </div>
                     <div className="mb-5.5 flex flex-col gap-5.5 sm:flex-row">
-                    <div className="w-full sm:w-1/2">
-                    <label
-                        className="mb-3 block text-sm font-medium text-black dark:text-white"
-                        htmlFor="Address"
-                      >
-                        Address
-                      </label>
-                      <input
-                        className="w-full rounded border border-stroke bg-gray py-3 px-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
-                        type="text"
-                        id="Username"
-                        placeholder="Address"
-                        {...register("profile.address", { required: true })}
-                      />
-                      {errors.profile?.address && (
-                        <p className="text-[red] text-sm mt-1">
-                          This Field is required
-                        </p>
-                      )}
-
+                      <div className="w-full sm:w-1/2">
+                        <label
+                          className="mb-3 block text-sm font-medium text-black dark:text-white"
+                          htmlFor="Address"
+                        >
+                          Address
+                        </label>
+                        <input
+                          className="w-full rounded border border-stroke bg-gray py-3 px-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
+                          type="text"
+                          id="Username"
+                          placeholder="Address"
+                          {...register("profile.address", { required: true })}
+                        />
+                        {errors?.profile?.address && (
+                          <p className="text-[red] text-sm mt-1">
+                            This Field is required
+                          </p>
+                        )}
                       </div>
                       <div className="w-full sm:w-1/2">
                         <label
@@ -229,15 +228,15 @@ const CreateUserPage = () => {
                           </SelectItem>
                           <SelectItem key="user" value="user">
                             User
-                          </SelectItem>                          
+                          </SelectItem>
                         </Select>
-                        {errors.role && (
+                        {errors?.role && (
                           <p className="text-[red] text-sm mt-1">
                             This Field is required
                           </p>
                         )}
                       </div>
-                    </div>                  
+                    </div>
 
                     <div className="mb-5.5">
                       <label
@@ -285,7 +284,7 @@ const CreateUserPage = () => {
                           placeholder="Write your bio here"
                           {...register("profile.bio", { required: true })}
                         ></textarea>
-                        {errors.profile?.bio && (
+                        {errors?.profile?.bio && (
                           <p className="text-[red] text-sm mt-1">
                             This Field is required
                           </p>
@@ -322,7 +321,7 @@ const CreateUserPage = () => {
                         {...register("profile.image", { required: true })}
                         className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline-blue focus:border-blue-300"
                       />
-                      {errors.profile?.image && (
+                      {errors?.profile?.image && (
                         <p className="text-[red] text-sm mt-1">
                           This Field is required
                         </p>

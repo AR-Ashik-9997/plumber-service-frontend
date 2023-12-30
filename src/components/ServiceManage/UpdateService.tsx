@@ -156,7 +156,7 @@ const UpdateService = ({ params }: IDProps) => {
                           />
                         </div>
                       </div>
-                      {serviceData?.features.map(
+                      {serviceData?.features?.map(
                         (item: IGetServiceFeatures, index: number) => (
                           <React.Fragment key={index}>
                             <div className="mb-5.5 flex flex-col gap-5.5 sm:flex-row">

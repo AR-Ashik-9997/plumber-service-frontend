@@ -13,12 +13,12 @@ import React from "react";
 import Image from "next/image";
 import { useGetSingleBookingsQuery } from "@/redux/api/bookingApi";
 
-const UpdateBookings = ({ params }: IDProps) => {
+const UpdateUserBookings = ({ params }: IDProps) => {
   const { id } = params;
   const { data: BookingData, isLoading } = useGetSingleBookingsQuery(id, {
     refetchOnMountOrArgChange: true,
     pollingInterval: 1000,
-  });
+  });  
   const { handleSubmit, reset, control } = useForm<IGetAllBookings>();
   const [loading, setLoading] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
@@ -73,32 +73,7 @@ const UpdateBookings = ({ params }: IDProps) => {
                       </p>
                     )}
 
-                    <div className="p-7">
-                      <div className="mb-5.5">
-                        <label
-                          className="mb-3 block text-sm font-medium text-black dark:text-white"
-                          htmlFor="username"
-                        >
-                          User Name
-                        </label>
-                        <div className="relative">
-                          <span className="absolute left-4.5 top-4"></span>
-                          <Controller
-                            name="user.name"
-                            control={control}
-                            defaultValue={BookingData?.user?.name}
-                            render={({ field }) => (
-                              <input
-                                {...field}
-                                className="w-full rounded border border-stroke bg-gray py-3 px-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
-                                type="text"
-                                readOnly
-                                id="username"
-                              />
-                            )}
-                          />
-                        </div>
-                      </div>
+                    <div className="p-7">                      
                       <div className="mb-5.5 flex flex-col gap-5.5 sm:flex-row">
                         <div className="w-full sm:w-1/2">
                           <label
@@ -169,38 +144,7 @@ const UpdateBookings = ({ params }: IDProps) => {
                               )}
                             />
                           </div>
-                        </div>
-                        <div className="w-full sm:w-1/2">
-                          <label
-                            className="mb-3 block text-sm font-medium text-black dark:text-white"
-                            htmlFor="status"
-                          >
-                            Status
-                          </label>
-                          <Controller
-                            name="status"
-                            control={control}
-                            defaultValue={BookingData?.status}
-                            render={({ field }) => (
-                              <Select
-                                defaultSelectedKeys={[`${BookingData?.status}`]}
-                                className="max-w-xs text-black"
-                                size="md"
-                                {...field}
-                              >
-                                <SelectItem key="Pending" value="Pending">
-                                  Pending
-                                </SelectItem>
-                                <SelectItem key="Accepted" value="Accepted">
-                                  Accepted
-                                </SelectItem>
-                                <SelectItem key="Rejected" value="Rejected">
-                                  Rejected
-                                </SelectItem>
-                              </Select>
-                            )}
-                          />
-                        </div>
+                        </div>                       
                       </div>
                     </div>
                   </div>
@@ -254,4 +198,4 @@ const UpdateBookings = ({ params }: IDProps) => {
   );
 };
 
-export default UpdateBookings;
+export default UpdateUserBookings;

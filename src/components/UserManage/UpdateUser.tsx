@@ -202,6 +202,7 @@ const UpdateUser = ({ params }: IDProps) => {
                             <Controller
                               name="role"
                               control={control}
+                              defaultValue={userData?.role}
                               render={({ field }) => (
                                 <Select
                                   label="Select Role"
@@ -270,6 +271,7 @@ const UpdateUser = ({ params }: IDProps) => {
                               <Controller
                                 name="profile.bio"
                                 control={control}
+                                defaultValue={item?.bio}
                                 render={({ field }) => (
                                   <textarea
                                     {...field}

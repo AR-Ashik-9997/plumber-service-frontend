@@ -26,7 +26,22 @@ export const bookingApi = baseApi.injectEndpoints({
       }),
       providesTags: [tagTypes.admin, tagTypes.user],
     }),
+    CancelBooking: build.mutation({
+      query: (id) => ({
+        url: `/bookings/${id}`,
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `${authAccess}`,
+        },
+      }),
+      invalidatesTags: [tagTypes.user],
+    }),
   }),
 });
 
-export const { useGetAllBookingsQuery, useGetSingleBookingsQuery } = bookingApi;
+export const {
+  useGetAllBookingsQuery,
+  useGetSingleBookingsQuery,
+  useCancelBookingMutation,
+} = bookingApi;

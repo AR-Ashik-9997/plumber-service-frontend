@@ -203,11 +203,12 @@ const UpdateAllUsers = ({ params }: IDProps) => {
                             <Controller
                               name="role"
                               control={control}
+                              defaultValue={userData?.role}
                               render={({ field }) => (
                                 <Select
                                   label="Select Role"
                                   placeholder="Select the Role"
-                                  defaultSelectedKeys={[`${userData.role}`]}
+                                  defaultSelectedKeys={[`${userData?.role}`]}
                                   className="max-w-xs"
                                   {...field}
                                 >
@@ -309,7 +310,7 @@ const UpdateAllUsers = ({ params }: IDProps) => {
                         alt="a"
                         width={50}
                         height={50}
-                        layout="responsive"                        
+                        layout="responsive"
                       />
                     </div>
                     <div

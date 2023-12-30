@@ -1,11 +1,11 @@
 "use client";
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
-import { IDProps, IServices } from "@/types/globalTypes";
+import { IDProps, IGetServiceFeatures, IServices } from "@/types/globalTypes";
 import { useState } from "react";
 import { authAccess } from "@/services/auth_service";
 import axios from "axios";
-import { Button } from "@nextui-org/react";
+import { Button, Select, SelectItem } from "@nextui-org/react";
 import Swal from "sweetalert2";
 import Loader from "../common/Loader";
 import { useGetSingleServiceQuery } from "@/redux/api/serviceApi";
@@ -24,9 +24,24 @@ const UpdateService = ({ params }: IDProps) => {
   const [errorMessage, setErrorMessage] = useState<string>("");
   const onSubmit: SubmitHandler<IServices> = async (data: IServices) => {
     setLoading(true);
+    const title= data.title;
+    const description= data.description;
+    const availability=data.availability;   
+    const price= data.price;
+    const category= data.category;
+    const features=[];
+    features.push(data.features)
+    const updateData={
+      title,
+      description,
+      availability,
+      price,
+      category,
+      features
+    }
     const formData = new FormData();
     formData.append("service", data.image);
-    formData.append("data", JSON.stringify(data));
+    formData.append("data", JSON.stringify(updateData));
     await axios
       .patch(
         `${process.env.NEXT_PUBLIC_BACKEND_API}/api/v1/services/${id}`,
@@ -141,102 +156,169 @@ const UpdateService = ({ params }: IDProps) => {
                           />
                         </div>
                       </div>
-                      <div className="mb-5.5 flex flex-col gap-5.5 sm:flex-row">
-                        <div className="w-full sm:w-1/2">
-                          <label
-                            className="mb-3 block text-sm font-medium text-black dark:text-white "
-                            htmlFor="feature1"
-                          >
-                            Service Feature 1
-                          </label>
-                          <div>
-                            <Controller
-                              name="feature1"
-                              control={control}
-                              defaultValue={serviceData?.feature1}
-                              render={({ field }) => (
-                                <input
-                                  {...field}
-                                  className="w-full rounded border border-stroke bg-gray py-3 px-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
-                                  type="text"
-                                  id="feature1"
+                      {serviceData?.features.map(
+                        (item: IGetServiceFeatures, index: number) => (
+                          <React.Fragment key={index}>
+                            <div className="mb-5.5 flex flex-col gap-5.5 sm:flex-row">
+                              <div className="w-full sm:w-1/2">
+                                <label
+                                  className="mb-3 block text-sm font-medium text-black dark:text-white "
+                                  htmlFor="feature1"
+                                >
+                                  Service Feature 1
+                                </label>
+                                <div>
+                                  <Controller
+                                    name="features.feature1"
+                                    control={control}
+                                    defaultValue={item?.feature1}
+                                    render={({ field }) => (
+                                      <input
+                                        {...field}
+                                        className="w-full rounded border border-stroke bg-gray py-3 px-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
+                                        type="text"
+                                        id="feature1"
+                                      />
+                                    )}
+                                  />
+                                </div>
+                              </div>
+                              <div className="w-full sm:w-1/2">
+                                <label
+                                  className="mb-3 block text-sm font-medium text-black dark:text-white "
+                                  htmlFor="feature2"
+                                >
+                                  Service Feature 2
+                                </label>
+                                <div>
+                                  <Controller
+                                    name="features.feature2"
+                                    control={control}
+                                    defaultValue={item?.feature2}
+                                    render={({ field }) => (
+                                      <input
+                                        {...field}
+                                        className="w-full rounded border border-stroke bg-gray py-3 px-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
+                                        type="text"
+                                        id="feature2"
+                                      />
+                                    )}
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                            <div className="mb-5.5 flex flex-col gap-5.5 sm:flex-row">
+                              <div className="w-full sm:w-1/2">
+                                <label
+                                  className="mb-3 block text-sm font-medium text-black dark:text-white "
+                                  htmlFor="feature3"
+                                >
+                                  Service Feature 3
+                                </label>
+                                <div>
+                                  <Controller
+                                    name="features.feature3"
+                                    control={control}
+                                    defaultValue={item?.feature3}
+                                    render={({ field }) => (
+                                      <input
+                                        {...field}
+                                        className="w-full rounded border border-stroke bg-gray py-3 px-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
+                                        type="text"
+                                        id="feature3"
+                                      />
+                                    )}
+                                  />
+                                </div>
+                              </div>
+                              <div className="w-full sm:w-1/2">
+                                <label
+                                  className="mb-3 block text-sm font-medium text-black dark:text-white "
+                                  htmlFor="feature4"
+                                >
+                                  Service Feature 4
+                                </label>
+                                <div>
+                                  <Controller
+                                    name="features.feature4"
+                                    control={control}
+                                    defaultValue={item?.feature4}
+                                    render={({ field }) => (
+                                      <input
+                                        {...field}
+                                        className="w-full rounded border border-stroke bg-gray py-3 px-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
+                                        type="text"
+                                        id="feature5"
+                                      />
+                                    )}
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                            <div className="mb-5.5 flex flex-col gap-5.5 sm:flex-row">
+                              <div className="w-full sm:w-1/2">
+                                <label
+                                  className="mb-3 block text-sm font-medium text-black dark:text-white "
+                                  htmlFor="feature5"
+                                >
+                                  Service Feature 5
+                                </label>
+                                <div>
+                                  <Controller
+                                    name="features.feature5"
+                                    control={control}
+                                    defaultValue={item?.feature5}
+                                    render={({ field }) => (
+                                      <input
+                                        {...field}
+                                        className="w-full rounded border border-stroke bg-gray py-3 px-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
+                                        type="text"
+                                        id="feature5"
+                                      />
+                                    )}
+                                  />
+                                </div>
+                              </div>
+                              <div className="w-full sm:w-1/2">
+                                <label
+                                  className="mb-3 block text-sm font-medium text-black dark:text-white"
+                                  htmlFor="status"
+                                >
+                                  Status
+                                </label>
+                                <Controller
+                                  name="availability"
+                                  control={control}
+                                  defaultValue={serviceData?.availability}
+                                  render={({ field }) => (
+                                    <Select
+                                      defaultSelectedKeys={[
+                                        `${serviceData?.availability}`,
+                                      ]}
+                                      className="max-w-xs text-black"
+                                      size="md"
+                                      {...field}
+                                    >
+                                      <SelectItem
+                                        key="Available"
+                                        value="Available"
+                                      >
+                                        Availabile
+                                      </SelectItem>
+                                      <SelectItem
+                                        key="NotAvailable"
+                                        value="NotAvailable"
+                                      >
+                                        Not Available
+                                      </SelectItem>
+                                    </Select>
+                                  )}
                                 />
-                              )}
-                            />
-                          </div>
-                        </div>
-                        <div className="w-full sm:w-1/2">
-                          <label
-                            className="mb-3 block text-sm font-medium text-black dark:text-white "
-                            htmlFor="feature2"
-                          >
-                            Service Feature 2
-                          </label>
-                          <div>
-                            <Controller
-                              name="feature3"
-                              control={control}
-                              defaultValue={serviceData?.feature2}
-                              render={({ field }) => (
-                                <input
-                                  {...field}
-                                  className="w-full rounded border border-stroke bg-gray py-3 px-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
-                                  type="text"
-                                  id="feature2"
-                                />
-                              )}
-                            />
-                          </div>
-                        </div>
-                      </div>
-                      <div className="mb-5.5 flex flex-col gap-5.5 sm:flex-row">
-                        <div className="w-full sm:w-1/2">
-                          <label
-                            className="mb-3 block text-sm font-medium text-black dark:text-white "
-                            htmlFor="feature3"
-                          >
-                            Service Feature 3
-                          </label>
-                          <div>
-                            <Controller
-                              name="feature3"
-                              control={control}
-                              defaultValue={serviceData?.feature3}
-                              render={({ field }) => (
-                                <input
-                                  {...field}
-                                  className="w-full rounded border border-stroke bg-gray py-3 px-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
-                                  type="text"
-                                  id="feature3"
-                                />
-                              )}
-                            />
-                          </div>
-                        </div>
-                        <div className="w-full sm:w-1/2">
-                          <label
-                            className="mb-3 block text-sm font-medium text-black dark:text-white "
-                            htmlFor="feature4"
-                          >
-                            Service Feature 4
-                          </label>
-                          <div>
-                            <Controller
-                              name="feature4"
-                              control={control}
-                              defaultValue={serviceData?.feature4}
-                              render={({ field }) => (
-                                <input
-                                  {...field}
-                                  className="w-full rounded border border-stroke bg-gray py-3 px-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
-                                  type="text"
-                                  id="feature5"
-                                />
-                              )}
-                            />
-                          </div>
-                        </div>
-                      </div>
+                              </div>
+                            </div>
+                          </React.Fragment>
+                        )
+                      )}
                       <div className="mb-5.5">
                         <label
                           className="mb-3 block text-sm font-medium text-black dark:text-white"
@@ -295,6 +377,7 @@ const UpdateService = ({ params }: IDProps) => {
                     </div>
                   </div>
                 </div>
+
                 <div className="w-full">
                   <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
                     <div className="border-b border-stroke py-4 px-7 dark:border-strokedark">

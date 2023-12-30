@@ -206,7 +206,7 @@ const UpdateAllUsers = ({ params }: IDProps) => {
                               render={({ field }) => (
                                 <Select
                                   label="Select Role"
-                                  placeholder="Select an animal"
+                                  placeholder="Select the Role"
                                   defaultSelectedKeys={[`${userData.role}`]}
                                   className="max-w-xs"
                                   {...field}

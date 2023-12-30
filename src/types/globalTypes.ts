@@ -42,6 +42,20 @@ export type IAllUser = {
   role: string;
 };
 
+export type IAllBookingsForAdmin = {
+  id: string;
+  user: {
+    name: string;
+  };
+  service: {
+    title: string;
+    image: string;
+  };
+  date: string;
+  time: string;
+  status: string;
+};
+
 export type ISingleUserProfile = {
   contactNo: string;
   address: string;
@@ -56,14 +70,19 @@ export type IServices = {
   id: string;
   title: string;
   description: string;
+  availability: string;
   image: string;
   price: string;
   category: string;
-  feature1: string;
-  feature2: string;
-  feature3: string;
-  feature4: string;
+  features: {
+    feature1: string;
+    feature2: string;
+    feature3: string;
+    feature4: string;
+    feature5: string;
+  };
 };
+
 export type IFaqs = {
   id: string;
   title1: string;
@@ -85,6 +104,14 @@ export type IGetService = {
   title: string;
   price: string;
   category: string;
+  availability: string;
+};
+export type IGetServiceFeatures = {
+  feature1: string;
+  feature2: string;
+  feature3: string;
+  feature4: string;
+  feature5: string;
 };
 
 export type ICreateAdmin = {

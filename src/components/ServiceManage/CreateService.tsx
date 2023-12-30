@@ -5,7 +5,7 @@ import { IServices } from "@/types/globalTypes";
 import { useEffect, useState } from "react";
 import { authAccess } from "@/services/auth_service";
 import axios from "axios";
-import { Button } from "@nextui-org/react";
+import { Button, Select, SelectItem } from "@nextui-org/react";
 import Swal from "sweetalert2";
 import Loader from "../common/Loader";
 
@@ -21,9 +21,22 @@ const CreateService = () => {
   const [pageLoading, setPageLoading] = useState<boolean>(true);
   const onSubmit: SubmitHandler<IServices> = async (data: IServices) => {
     setLoading(true);
+    const title= data.title;
+    const description= data.description;;    
+    const price= data.price;
+    const category= data.category;
+    const features=[];
+    features.push(data.features)
+    const serviceData={
+      title,
+      description,
+      price,
+      category,
+      features
+    }   
     const formData = new FormData();
     formData.append("service", data.image[0]);
-    formData.append("data", JSON.stringify(data));
+    formData.append("data", JSON.stringify(serviceData));
     await axios
       .post(
         `${process.env.NEXT_PUBLIC_BACKEND_API}/api/v1/services`,
@@ -172,11 +185,11 @@ const CreateService = () => {
                               className="w-full rounded border border-stroke bg-gray py-3 px-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
                               type="text"
                               id="feature1"
-                              {...register("feature1", {
+                              {...register("features.feature1", {
                                 required: true,
                               })}
                             />
-                            {errors?.feature1 && (
+                            {errors?.features?.feature1 && (
                               <p className="text-[red] text-sm mt-1">
                                 This Field is required
                               </p>
@@ -195,11 +208,11 @@ const CreateService = () => {
                               className="w-full rounded border border-stroke bg-gray py-3 px-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
                               type="text"
                               id="feature2"
-                              {...register("feature2", {
+                              {...register("features.feature2", {
                                 required: true,
                               })}
                             />
-                            {errors?.feature2 && (
+                            {errors?.features?.feature2 && (
                               <p className="text-[red] text-sm mt-1">
                                 This Field is required
                               </p>
@@ -220,11 +233,11 @@ const CreateService = () => {
                               className="w-full rounded border border-stroke bg-gray py-3 px-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
                               type="text"
                               id="feature3"
-                              {...register("feature3", {
+                              {...register("features.feature3", {
                                 required: true,
                               })}
                             />
-                            {errors?.feature3 && (
+                            {errors?.features?.feature3 && (
                               <p className="text-[red] text-sm mt-1">
                                 This Field is required
                               </p>
@@ -243,17 +256,66 @@ const CreateService = () => {
                               className="w-full rounded border border-stroke bg-gray py-3 px-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
                               type="text"
                               id="feature5"
-                              {...register("feature4", {
+                              {...register("features.feature4", {
                                 required: true,
                               })}
                             />
-                            {errors?.feature4 && (
+                            {errors?.features?.feature4 && (
                               <p className="text-[red] text-sm mt-1">
                                 This Field is required
                               </p>
                             )}
                           </div>
                         </div>
+                      </div>
+                      <div className="mb-5.5 flex flex-col gap-5.5 sm:flex-row">
+                        <div className="w-full sm:w-1/2">
+                          <label
+                            className="mb-3 block text-sm font-medium text-black dark:text-white "
+                            htmlFor="feature5"
+                          >
+                            Service Feature 5
+                          </label>
+                          <div>
+                            <input
+                              className="w-full rounded border border-stroke bg-gray py-3 px-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
+                              type="text"
+                              id="feature5"
+                              {...register("features.feature5", {
+                                required: true,
+                              })}
+                            />
+                            {errors?.features?.feature5 && (
+                              <p className="text-[red] text-sm mt-1">
+                                This Field is required
+                              </p>
+                            )}
+                          </div>
+                        </div>
+                        <div className="w-full sm:w-1/2">
+                        <label
+                          className="mb-3 block text-sm font-medium text-black dark:text-white"
+                          htmlFor="availability"
+                        >
+                          Availability
+                        </label>
+                        <Select
+                          label="Select Availability"                         
+                          {...register("availability", { required: true })}
+                        >
+                          <SelectItem key="Available" value="Available">
+                          Availabile
+                          </SelectItem>
+                          <SelectItem key="NotAvailable" value="NotAvailable">
+                          Not Available
+                          </SelectItem>                         
+                        </Select>
+                        {errors.availability && (
+                          <p className="text-[red] text-sm mt-1">
+                            This Field is required
+                          </p>
+                        )}
+                      </div>
                       </div>
                       <div className="mb-5.5">
                         <label

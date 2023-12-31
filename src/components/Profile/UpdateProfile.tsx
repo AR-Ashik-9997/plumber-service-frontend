@@ -9,25 +9,28 @@ import axios from "axios";
 import { Button } from "@nextui-org/react";
 import Swal from "sweetalert2";
 import { useGetUserQuery } from "@/redux/api/userApi";
+import { uploadFile } from "@/services/FileUpload";
 
 const UpdateProfile = () => {
   const { userId: id } = getUserInfo() as any;
   const { handleSubmit, control, reset } = useForm<IProfile>();
   const { data: userData } = useGetUserQuery(id);
   const [loading, setLoading] = useState<boolean>(false);
-
   const onSubmit: SubmitHandler<IProfile> = async (data: IProfile) => {
     setLoading(true);
-    const formData = new FormData();
-    formData.append("file", data.image);
-    formData.append("data", JSON.stringify(data));
+    const image = await uploadFile(data.image);
+    data.image = image;
     await axios
-      .patch(`https://plumber-service-one.vercel.app/api/v1/profile/${id}`, formData, {
-        headers: {
-          Authorization: `${authAccess}`,
-          "Content-Type": "multipart/form-data",
-        },
-      })
+      .patch(
+        `https://plumber-service-one.vercel.app/api/v1/profile/${id}`,
+        data,
+        {
+          headers: {
+            Authorization: `${authAccess}`,
+            "Content-Type": "application/json",
+          },
+        }
+      )
       .then((res) => {
         if (!!res?.data.success) {
           setLoading(false);

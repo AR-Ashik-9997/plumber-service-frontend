@@ -9,6 +9,7 @@ import axios from "axios";
 import { Button } from "@nextui-org/react";
 import Swal from "sweetalert2";
 import Loader from "../common/Loader";
+import { uploadFile } from "@/services/FileUpload";
 
 const CreateBlogPage = () => {
   const {
@@ -22,14 +23,13 @@ const CreateBlogPage = () => {
   const [pageLoading, setPageLoading] = useState<boolean>(true);
   const onSubmit: SubmitHandler<IBlogs> = async (data: IBlogs) => {
     setLoading(true);
-    const formData = new FormData();
-    formData.append("blog", data.image[0]);
-    formData.append("data", JSON.stringify(data));
+    const image = await uploadFile(data.image);
+    data.image = image;
     await axios
-      .post(`${process.env.NEXT_PUBLIC_BACKEND_API}/api/v1/blogs`, formData, {
+      .post(`${process.env.NEXT_PUBLIC_BACKEND_API}/api/v1/blogs`, data, {
         headers: {
           Authorization: `${authAccess}`,
-          "Content-Type": "multipart/form-data",
+          "Content-Type": "application/json",
         },
       })
       .then((res) => {

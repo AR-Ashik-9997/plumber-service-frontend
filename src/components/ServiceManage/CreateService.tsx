@@ -8,6 +8,7 @@ import axios from "axios";
 import { Button, Select, SelectItem } from "@nextui-org/react";
 import Swal from "sweetalert2";
 import Loader from "../common/Loader";
+import { uploadFile } from "@/services/FileUpload";
 
 const CreateService = () => {
   const {
@@ -19,32 +20,34 @@ const CreateService = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [pageLoading, setPageLoading] = useState<boolean>(true);
+
   const onSubmit: SubmitHandler<IServices> = async (data: IServices) => {
     setLoading(true);
-    const title= data.title;
-    const description= data.description;;    
-    const price= data.price;
-    const category= data.category;
-    const features=[];
-    features.push(data.features)
-    const serviceData={
+    const title = data.title;
+    const description = data.description;
+    const price = Number(data.price);
+    const category = data.category;
+    const image = await uploadFile(data.image);
+    const availability = data?.availability;
+    const features = [];
+    features.push(data.features);
+    const serviceData = {
       title,
       description,
       price,
       category,
-      features
-    }   
-    const formData = new FormData();
-    formData.append("service", data.image[0]);
-    formData.append("data", JSON.stringify(serviceData));
+      image,
+      availability,
+      features,
+    };
     await axios
       .post(
         `${process.env.NEXT_PUBLIC_BACKEND_API}/api/v1/services`,
-        formData,
+        serviceData,
         {
           headers: {
             Authorization: `${authAccess}`,
-            "Content-Type": "multipart/form-data",
+            "Content-Type": "application/json",
           },
         }
       )
@@ -139,7 +142,7 @@ const CreateService = () => {
                           <div>
                             <input
                               className="w-full rounded border border-stroke bg-gray py-3 px-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
-                              type="text"
+                              type="number"
                               id="price"
                               {...register("price", {
                                 required: true,
@@ -293,29 +296,29 @@ const CreateService = () => {
                           </div>
                         </div>
                         <div className="w-full sm:w-1/2">
-                        <label
-                          className="mb-3 block text-sm font-medium text-black dark:text-white"
-                          htmlFor="availability"
-                        >
-                          Availability
-                        </label>
-                        <Select
-                          label="Select Availability"                         
-                          {...register("availability", { required: true })}
-                        >
-                          <SelectItem key="Available" value="Available">
-                          Availabile
-                          </SelectItem>
-                          <SelectItem key="NotAvailable" value="NotAvailable">
-                          Not Available
-                          </SelectItem>                         
-                        </Select>
-                        {errors.availability && (
-                          <p className="text-[red] text-sm mt-1">
-                            This Field is required
-                          </p>
-                        )}
-                      </div>
+                          <label
+                            className="mb-3 block text-sm font-medium text-black dark:text-white"
+                            htmlFor="availability"
+                          >
+                            Availability
+                          </label>
+                          <Select
+                            label="Select Availability"
+                            {...register("availability", { required: true })}
+                          >
+                            <SelectItem key="Available" value="Available">
+                              Availabile
+                            </SelectItem>
+                            <SelectItem key="NotAvailable" value="NotAvailable">
+                              Not Available
+                            </SelectItem>
+                          </Select>
+                          {errors.availability && (
+                            <p className="text-[red] text-sm mt-1">
+                              This Field is required
+                            </p>
+                          )}
+                        </div>
                       </div>
                       <div className="mb-5.5">
                         <label

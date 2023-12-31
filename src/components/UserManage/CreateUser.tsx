@@ -9,6 +9,7 @@ import axios from "axios";
 import { Button, Select, SelectItem } from "@nextui-org/react";
 import Swal from "sweetalert2";
 import Loader from "../common/Loader";
+import { uploadFile } from "@/services/FileUpload";
 
 const CreateUserPage = () => {
   const {
@@ -22,14 +23,13 @@ const CreateUserPage = () => {
   const [pageLoading, setPageLoading] = useState<boolean>(true);
   const onSubmit: SubmitHandler<ICreateUser> = async (data: ICreateUser) => {
     setLoading(true);
-    const formData = new FormData();
-    formData.append("profile", data.profile.image[0]);
-    formData.append("data", JSON.stringify(data));
+    const image = await uploadFile(data?.profile?.image);
+    data.profile.image = image;
     await axios
-      .post(`${process.env.NEXT_PUBLIC_BACKEND_API}/api/v1/user`, formData, {
+      .post(`${process.env.NEXT_PUBLIC_BACKEND_API}/api/v1/user`, data, {
         headers: {
           Authorization: `${authAccess}`,
-          "Content-Type": "multipart/form-data",
+          "Content-Type": "application/json",
         },
       })
       .then((res) => {

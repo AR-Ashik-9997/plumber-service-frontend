@@ -10,6 +10,7 @@ import { Button, Select, SelectItem } from "@nextui-org/react";
 import Swal from "sweetalert2";
 import { useGetSingleUserQuery } from "@/redux/api/userApi";
 import Loader from "@/components/common/Loader";
+import { uploadFile } from "@/services/FileUpload";
 
 const UpdateAllUsers = ({ params }: IDProps) => {
   const { id } = params;
@@ -24,17 +25,16 @@ const UpdateAllUsers = ({ params }: IDProps) => {
   const [errorMessage, setErrorMessage] = useState<string>("");
   const onSubmit: SubmitHandler<ICreateAdmin> = async (data: ICreateAdmin) => {
     setLoading(true);
-    const formData = new FormData();
-    formData.append("profile", data.profile.image);
-    formData.append("data", JSON.stringify(data));
+    const image = await uploadFile(data.profile.image);
+    data.profile.image = image;
     await axios
       .patch(
         `${process.env.NNEXT_PUBLIC_BACKEND_API}/api/v1/user/${id}`,
-        formData,
+        data,
         {
           headers: {
             Authorization: `${authAccess}`,
-            "Content-Type": "multipart/form-data",
+            "Content-Type": "application/json",
           },
         }
       )

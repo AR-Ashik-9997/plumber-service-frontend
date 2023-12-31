@@ -10,6 +10,7 @@ import { Button, Select, SelectItem } from "@nextui-org/react";
 import Swal from "sweetalert2";
 import { useGetSingleUserQuery } from "@/redux/api/userApi";
 import Loader from "@/components/common/Loader";
+import { uploadFile } from "@/services/FileUpload";
 
 const UpdateUser = ({ params }: IDProps) => {
   const { id } = params;
@@ -23,20 +24,15 @@ const UpdateUser = ({ params }: IDProps) => {
   const [errorMessage, setErrorMessage] = useState<string>("");
   const onSubmit: SubmitHandler<ICreateUser> = async (data: ICreateUser) => {
     setLoading(true);
-    const formData = new FormData();
-    formData.append("profile", data.profile.image);
-    formData.append("data", JSON.stringify(data));
+    const image = await uploadFile(data?.profile?.image);
+    data.profile.image = image;
     await axios
-      .patch(
-        `${process.env.NEXT_PUBLIC_BACKEND_API}/api/v1/user/${id}`,
-        formData,
-        {
-          headers: {
-            Authorization: `${authAccess}`,
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      )
+      .patch(`${process.env.NEXT_PUBLIC_BACKEND_API}/api/v1/user/${id}`, data, {
+        headers: {
+          Authorization: `${authAccess}`,
+          "Content-Type": "application/json",
+        },
+      })
       .then((res) => {
         if (!!res?.data.success) {
           setLoading(false);

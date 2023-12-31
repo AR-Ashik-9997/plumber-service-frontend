@@ -10,7 +10,7 @@ const AllUsers = () => {
   const { data, isLoading } = useGetAlltUsersQuery(undefined, {
     refetchOnMountOrArgChange: true,
     pollingInterval: 10000,
-  });
+  }); 
   return (
     <section>
       {isLoading ? (

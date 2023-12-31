@@ -10,6 +10,7 @@ import { Button } from "@nextui-org/react";
 import Swal from "sweetalert2";
 import Loader from "@/components/common/Loader";
 import { useGetSingleBlogQuery } from "@/redux/api/blogApi";
+import { uploadFile } from "@/services/FileUpload";
 
 const EditBlogs = ({ params }: IDProps) => {
   const { id } = params;
@@ -23,13 +24,12 @@ const EditBlogs = ({ params }: IDProps) => {
   const [errorMessage, setErrorMessage] = useState<string>("");
   const onSubmit: SubmitHandler<IBlogs> = async (data: IBlogs) => {
     setLoading(true);
-    const formData = new FormData();
-    formData.append("blog", data.image);
-    formData.append("data", JSON.stringify(data));
+    const image = await uploadFile(data.image);
+    data.image = image;    
     await axios
       .patch(
         `${process.env.NEXT_PUBLIC_BACKEND_API}/api/v1/blogs/${id}`,
-        formData,
+        data,
         {
           headers: {
             Authorization: `${authAccess}`,

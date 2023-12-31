@@ -72,7 +72,7 @@ export type IServices = {
   description: string;
   availability: string;
   image: string;
-  price: string;
+  price: number;
   category: string;
   features: {
     feature1: string;
@@ -102,7 +102,7 @@ export type IFaqs = {
 export type IGetService = {
   id: string;
   title: string;
-  price: string;
+  price: number;
   category: string;
   availability: string;
 };

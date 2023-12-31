@@ -8,6 +8,7 @@ import Image from "next/image";
 import axios from "axios";
 import { Button } from "@nextui-org/react";
 import Swal from "sweetalert2";
+import { uploadFile } from "@/services/FileUpload";
 
 const CreateProfilePage = () => {
   const {
@@ -19,14 +20,13 @@ const CreateProfilePage = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const onSubmit: SubmitHandler<IProfile> = async (data: IProfile) => {
     setLoading(true);
-    const formData = new FormData();
-    formData.append("file", data.image[0]);
-    formData.append("data", JSON.stringify(data));
+    const image = await uploadFile(data?.image);
+    data.image = image;
     await axios
-      .post(`${process.env.NEXT_PUBLIC_BACKEND_API}/api/v1/profile`, formData, {
+      .post(`${process.env.NEXT_PUBLIC_BACKEND_API}/api/v1/profile`, data, {
         headers: {
           Authorization: `${authAccess}`,
-          "Content-Type": "multipart/form-data",
+          "Content-Type": "application/json",
         },
       })
       .then((res) => {
@@ -41,7 +41,7 @@ const CreateProfilePage = () => {
   return (
     <>
       <div className="mx-auto max-w-270">
-        <Breadcrumb pageName="Profile" />
+        <Breadcrumb pageName="Create Profile" />
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="grid grid-cols-5 gap-8">
             <div className="col-span-5 xl:col-span-3">
@@ -133,7 +133,7 @@ const CreateProfilePage = () => {
                       className="w-full rounded border border-stroke bg-gray py-3 px-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
                       type="text"
                       id="Username"
-                      placeholder="devidjhon24"
+                      placeholder="Write your Address here"
                       {...register("address", { required: true })}
                     />
                     {errors.address && (

@@ -11,6 +11,7 @@ import Loader from "../common/Loader";
 import { useGetSingleServiceQuery } from "@/redux/api/serviceApi";
 import React from "react";
 import Image from "next/image";
+import { uploadFile } from "@/services/FileUpload";
 
 const UpdateService = ({ params }: IDProps) => {
   const { id } = params;
@@ -24,32 +25,32 @@ const UpdateService = ({ params }: IDProps) => {
   const [errorMessage, setErrorMessage] = useState<string>("");
   const onSubmit: SubmitHandler<IServices> = async (data: IServices) => {
     setLoading(true);
-    const title= data.title;
-    const description= data.description;
-    const availability=data.availability;   
-    const price= data.price;
-    const category= data.category;
-    const features=[];
-    features.push(data.features)
-    const updateData={
+
+    const title = data.title;
+    const description = data.description;
+    const availability = data.availability;
+    const price = data.price;
+    const category = data.category;
+    const image = await uploadFile(data.image);
+    const features = [];
+    features.push(data.features);
+    const updateData = {
       title,
       description,
       availability,
       price,
+      image,
       category,
-      features
-    }
-    const formData = new FormData();
-    formData.append("service", data.image);
-    formData.append("data", JSON.stringify(updateData));
+      features,
+    };
     await axios
       .patch(
         `${process.env.NEXT_PUBLIC_BACKEND_API}/api/v1/services/${id}`,
-        formData,
+        updateData,
         {
           headers: {
             Authorization: `${authAccess}`,
-            "Content-Type": "multipart/form-data",
+            "Content-Type": "application/json",
           },
         }
       )

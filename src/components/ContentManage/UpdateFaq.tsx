@@ -61,7 +61,7 @@ const UpdateFaqs = () => {
                   <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark ">
                     <div className="border-b border-stroke py-4 px-7 dark:border-strokedark">
                       <h3 className="font-medium text-black dark:text-white">
-                        Service Card Information
+                        Faq List Information
                       </h3>
                     </div>
                     {errorMessage && (
@@ -90,7 +90,7 @@ const UpdateFaqs = () => {
                                   render={({ field }) => (
                                     <input
                                       {...field}
-                                      className="w-full rounded border border-stroke bg-gray py-3 pl-11.5 pr-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
+                                      className="w-full rounded border border-stroke bg-gray py-3 px-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
                                       type="text"
                                     />
                                   )}
@@ -114,7 +114,7 @@ const UpdateFaqs = () => {
                                   render={({ field }) => (
                                     <input
                                       {...field}
-                                      className="w-full rounded border border-stroke bg-gray py-3 pl-11.5 pr-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
+                                      className="w-full rounded border border-stroke bg-gray py-3 px-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
                                       type="text"
                                     />
                                   )}
@@ -176,7 +176,7 @@ const UpdateFaqs = () => {
                                     <textarea
                                       {...field}
                                       className="w-full rounded border border-stroke bg-gray py-3 pl-11.5 pr-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
-                                      id="bio"
+                                      id="description1"
                                       rows={6}
                                       placeholder="Write your bio here"
                                       defaultValue={item?.description1}
@@ -265,7 +265,7 @@ const UpdateFaqs = () => {
                                   render={({ field }) => (
                                     <input
                                       {...field}
-                                      className="w-full rounded border border-stroke bg-gray py-3 pl-11.5 pr-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
+                                      className="w-full rounded border border-stroke bg-gray py-3 px-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
                                       type="text"
                                     />
                                   )}
@@ -289,7 +289,7 @@ const UpdateFaqs = () => {
                                   render={({ field }) => (
                                     <input
                                       {...field}
-                                      className="w-full rounded border border-stroke bg-gray py-3 pl-11.5 pr-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
+                                      className="w-full rounded border border-stroke bg-gray py-3 px-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
                                       type="text"
                                     />
                                   )}
@@ -440,7 +440,7 @@ const UpdateFaqs = () => {
                                   render={({ field }) => (
                                     <input
                                       {...field}
-                                      className="w-full rounded border border-stroke bg-gray py-3 pl-11.5 pr-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
+                                      className="w-full rounded border border-stroke bg-gray py-3 px-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
                                       type="text"
                                     />
                                   )}
@@ -464,7 +464,7 @@ const UpdateFaqs = () => {
                                   render={({ field }) => (
                                     <input
                                       {...field}
-                                      className="w-full rounded border border-stroke bg-gray py-3 pl-11.5 pr-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
+                                      className="w-full rounded border border-stroke bg-gray py-3 px-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
                                       type="text"
                                     />
                                   )}

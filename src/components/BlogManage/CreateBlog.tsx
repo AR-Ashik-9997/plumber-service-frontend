@@ -3,13 +3,14 @@ import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { IBlogs } from "@/types/globalTypes";
 import { useEffect, useState } from "react";
-import { authAccess } from "@/services/auth_service";
+import { authAccess, getUserInfo } from "@/services/auth_service";
 import Image from "next/image";
 import axios from "axios";
 import { Button } from "@nextui-org/react";
 import Swal from "sweetalert2";
 import Loader from "../common/Loader";
 import { uploadFile } from "@/services/FileUpload";
+import { useGetUserQuery } from "@/redux/api/userApi";
 
 const CreateBlogPage = () => {
   const {
@@ -18,6 +19,11 @@ const CreateBlogPage = () => {
     reset,
     formState: { errors },
   } = useForm<IBlogs>();
+  const { userId: id } = getUserInfo() as any;
+  const { data: userData } = useGetUserQuery(id, {
+    refetchOnMountOrArgChange: true,
+    pollingInterval: 10000,
+  });
   const [loading, setLoading] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [pageLoading, setPageLoading] = useState<boolean>(true);
@@ -73,7 +79,7 @@ const CreateBlogPage = () => {
                           className="mb-3 block text-sm font-medium text-black dark:text-white"
                           htmlFor="fullName"
                         >
-                          Full Name
+                          User Name
                         </label>
                         <div className="relative">
                           <span className="absolute left-4.5 top-4">
@@ -106,13 +112,10 @@ const CreateBlogPage = () => {
                             type="text"
                             id="fullName"
                             placeholder="Name"
+                            defaultValue={userData?.username}
+                            readOnly
                             {...register("username", { required: true })}
                           />
-                          {errors.username && (
-                            <p className="text-[red] text-sm mt-1">
-                              This Field is required
-                            </p>
-                          )}
                         </div>
                       </div>
 

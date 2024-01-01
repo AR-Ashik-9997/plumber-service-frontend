@@ -8,14 +8,14 @@ export const serviceApi = baseApi.injectEndpoints({
         url: `/services`,
         method: "GET",
       }),
-      providesTags: [tagTypes.admin],
+      providesTags: [tagTypes.All],
     }),
     getSingleService: build.query({
       query: (id) => ({
         url: `/services/${id}`,
         method: "GET",
       }),
-      providesTags: [tagTypes.admin],
+      providesTags: [tagTypes.All],
     }),
     DeleteService: build.mutation({
       query: (id) => ({

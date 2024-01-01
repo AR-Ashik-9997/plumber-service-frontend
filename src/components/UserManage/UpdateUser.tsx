@@ -318,7 +318,7 @@ const UpdateUser = ({ params }: IDProps) => {
                               onChange={(event) => {
                                 onChange(
                                   event.target.files
-                                    ? event.target.files[0]
+                                    ? event.target.files
                                     : null
                                 );
                               }}

@@ -40,6 +40,7 @@ const CreateService = () => {
       availability,
       features,
     };
+
     await axios
       .post(
         `${process.env.NEXT_PUBLIC_BACKEND_API}/api/v1/services`,

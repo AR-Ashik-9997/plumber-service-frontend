@@ -1,20 +1,20 @@
 "use client";
-import { Button } from "@nextui-org/react";
-import Image from "next/image";
+import { Button, Card, CardBody, CardFooter, Image } from "@nextui-org/react";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { useRouter } from "next/navigation";
 import { Autoplay } from "swiper/modules";
 import { useGetAllBlogsQuery } from "@/redux/api/blogApi";
 import { IBlogs } from "@/types/globalTypes";
-
+import { getWordCount, makeReadableTime } from "@/services/helper";
 
 const Blog = () => {
-  const { data:BlogDara } = useGetAllBlogsQuery(undefined, {
+  const { data: BlogDara } = useGetAllBlogsQuery(undefined, {
     refetchOnMountOrArgChange: true,
     pollingInterval: 10000,
   });
-  console.log(BlogDara)
+  console.log(BlogDara);
   const router = useRouter();
   return (
     <section className="py-12 px-4 sm:px-8 md:px-12 lg:px-16">
@@ -56,10 +56,57 @@ const Blog = () => {
           modules={[Autoplay]}
           className="mySwiper"
         >
-          {BlogDara?.map((item:IBlogs, i: number) => (
+          {BlogDara?.map((item: IBlogs, i: number) => (
             <SwiperSlide key={i}>
               <div className="max-w-sm rounded overflow-hidden bg-white shadow-2xl">
-                <Image
+                <Card
+                  isFooterBlurred
+                  className="w-full h-[300px] col-span-12 sm:col-span-7"
+                >
+                  <Image
+                    removeWrapper
+                    alt="image"
+                    className="z-0 w-full h-full"
+                    src={item?.image}
+                  />
+                  <CardFooter className="absolute bg-black/40 bottom-0 z-10 ">
+                    <div className="flex flex-grow gap-2 items-center">
+                      <div className="flex flex-col text-justify ">
+                        <div className="flex">
+                        <div className="flex gap-2 items-center w-1/2">
+                          <p className="text-lg text-white">
+                            {item?.username}
+                          </p>
+                          <p className="text-lg text-white">
+                            {makeReadableTime(item?.updatedAt)}
+                          </p>                          
+                          
+                        </div>
+                        <div className="flex justify-end w-1/2">
+                          <Button
+                            onClick={() =>
+                              router.push(`/serviceDetailse/${item?.id}`)
+                            }
+                            radius="full"
+                            size="sm"
+                            className="hover:bg-[red] hover:text-white hover:font-bold"
+                          >
+                           Read More
+                          </Button>
+                          </div>
+                        </div>
+                        
+                        <p className="text-lg text-white">{item?.title}</p>
+                        <p className="text-tiny text-white ">
+                          {getWordCount(item?.blog) > 20
+                            ? item?.blog.slice(0, 150)
+                            : item?.blog}
+                        </p>
+                      </div>
+                    </div>                    
+                  </CardFooter>
+                </Card>
+                {/* <Image
                   src={item?.image}
                   alt="Card Image"
                   className="w-full object-cover  mx-auto p-4"
@@ -81,7 +128,7 @@ const Blog = () => {
                   >
                     READ MORE
                   </Button>
-                </div>
+                </div> */}
               </div>
             </SwiperSlide>
           ))}

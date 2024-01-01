@@ -31,7 +31,7 @@ const ServiceDetailsePage = ({ params }: IDProps) => {
             layout="responsive"
           />
         </div>
-        {serviceData?.ServiceDetails.map(
+        {serviceData?.ServiceDetails?.map(
           (service: IServiceDetailse, index: number) => (
             <div key={index}>
               <div className="py-4">

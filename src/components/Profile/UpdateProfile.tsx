@@ -16,6 +16,7 @@ const UpdateProfile = () => {
   const { handleSubmit, control, reset } = useForm<IProfile>();
   const { data: userData } = useGetUserQuery(id);
   const [loading, setLoading] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string>("");
   const onSubmit: SubmitHandler<IProfile> = async (data: IProfile) => {
     setLoading(true);
     const image = await uploadFile(data.image);
@@ -38,7 +39,7 @@ const UpdateProfile = () => {
           Swal.fire("Good job!", "Profile Updated successfully", "success");
         }
       })
-      .catch((err) => Swal.fire("Opps", "Something went Wrong", "error"));
+      .catch((err) => setErrorMessage(err?.response?.data?.message));
   };
   return (
     <>
@@ -53,6 +54,11 @@ const UpdateProfile = () => {
                     Personal Information
                   </h3>
                 </div>
+                {errorMessage && (
+                    <p className="text-[red] text-lg mt-1 text-center">
+                      {errorMessage}
+                    </p>
+                  )}
                 <div className="p-7">
                   <div className="mb-5.5 flex flex-col gap-5.5 sm:flex-row">
                     <div className="w-full sm:w-1/2">
@@ -235,7 +241,7 @@ const UpdateProfile = () => {
                             onChange={(event) => {
                               onChange(
                                 event.target.files
-                                  ? event.target.files[0]
+                                  ? event.target.files
                                   : null
                               );
                             }}

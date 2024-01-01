@@ -148,4 +148,6 @@ export type IBlogs = {
   title: string;
   image: string;
   blog: string;
+  createdAt: string;
+  updatedAt: string;
 };

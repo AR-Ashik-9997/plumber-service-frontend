@@ -25,7 +25,8 @@ const EditBlogs = ({ params }: IDProps) => {
   const onSubmit: SubmitHandler<IBlogs> = async (data: IBlogs) => {
     setLoading(true);
     const image = await uploadFile(data.image);
-    data.image = image;    
+    data.image = image;
+
     await axios
       .patch(
         `${process.env.NEXT_PUBLIC_BACKEND_API}/api/v1/blogs/${id}`,
@@ -33,7 +34,7 @@ const EditBlogs = ({ params }: IDProps) => {
         {
           headers: {
             Authorization: `${authAccess}`,
-            "Content-Type": "multipart/form-data",
+            "Content-Type": "application/json",
           },
         }
       )
@@ -114,7 +115,7 @@ const EditBlogs = ({ params }: IDProps) => {
                                 {...field}
                                 className="w-full rounded border border-stroke bg-gray py-3 pl-11.5 pr-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
                                 type="text"
-                                placeholder="Name"
+                                readOnly
                               />
                             )}
                           />
@@ -185,6 +186,7 @@ const EditBlogs = ({ params }: IDProps) => {
                         <Controller
                           name="blog"
                           control={control}
+                          defaultValue={blog?.blog}
                           render={({ field }) => (
                             <textarea
                               {...field}
@@ -192,7 +194,6 @@ const EditBlogs = ({ params }: IDProps) => {
                               id="bio"
                               rows={6}
                               placeholder="Write your bio here"
-                              defaultValue={blog?.blog}
                             ></textarea>
                           )}
                         />
@@ -231,9 +232,7 @@ const EditBlogs = ({ params }: IDProps) => {
                               {...field}
                               onChange={(event) => {
                                 onChange(
-                                  event.target.files
-                                    ? event.target.files[0]
-                                    : null
+                                  event.target.files ? event.target.files : null
                                 );
                               }}
                               type="file"

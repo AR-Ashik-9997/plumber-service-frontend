@@ -8,14 +8,14 @@ export const blogApi = baseApi.injectEndpoints({
         url: `/blogs`,
         method: "GET",
       }),
-      providesTags: [tagTypes.admin],
+      providesTags: [tagTypes.All],
     }),
     getSingleBlog: build.query({
       query: (id) => ({
         url: `/blogs/${id}`,
         method: "GET",
       }),
-      providesTags: [tagTypes.admin, tagTypes.user, tagTypes.superAdmin],
+      providesTags: [tagTypes.All],
     }),
     DeleteBlog: build.mutation({
       query: (id) => ({

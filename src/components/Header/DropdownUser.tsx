@@ -1,11 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import users from "../images/user/user-01.png";
 import { authKey, getUserInfo, removeUserInfo } from "@/services/auth_service";
 import { useRouter } from "next/navigation";
 import { useGetUserQuery } from "@/redux/api/userApi";
-import { data } from "autoprefixer";
+import { User } from "@nextui-org/react";
 
 const DropdownUser = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -54,21 +53,12 @@ const DropdownUser = () => {
         className="flex items-center gap-4"
         href="#"
       >
-        <span className="hidden text-right lg:block">
-          <span className="block text-sm font-medium text-black dark:text-white">
-            {userData?.username}
-          </span>
-        </span>
-
-        <span className="h-12 w-12 rounded-full">
-          <Image
-            width={112}
-            height={112}
-            src={userData ? userData?.image : users}
-            className="rounded-full"
-            alt="User"
-          />
-        </span>
+        <User
+          name={userData?.username}
+          avatarProps={{
+            src: `${userData?.image ? userData?.image : users}`,
+          }}
+        />
 
         <svg
           className="hidden fill-current sm:block"
